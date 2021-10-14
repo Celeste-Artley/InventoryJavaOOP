@@ -1,4 +1,4 @@
-#The objective of this Project is to build a desktop application that allows a user to capture ToDo items and categorize them into groups.#
+# The objective of this Project is to build a desktop application that allows a user to capture ToDo items and categorize them into groups. #
 
 ##Objectives:##
 
