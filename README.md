@@ -1,14 +1,14 @@
-#The objective of this Project is to build a desktop application that allows a user to capture ToDo items and categorize them into groups.
+#The objective of this Project is to build a desktop application that allows a user to capture ToDo items and categorize them into groups.#
 
-##Objectives:
+##Objectives:##
 
 - ToDo List
 - User Management
 - Interface
 
-##Criteria:
+##Criteria:##
 
- ###Criteria for ToDo Success
+ ###Criteria for ToDo Success###
 1. Each ToDo Item ("ToDo") can be stand-alone (Uncategorized) or part of a Category of Item's (Categorized)
 2. Each ToDo can have zero or more Tags associated with it
  - Tags are independent of Categories and can be used by users to group visually similar ToDo
@@ -18,7 +18,7 @@
 6. Each ToDo must have a Completed Checkbox 
 7. Each ToDo must have the ability capture a List of Updates
 
- ###Criteria for User Management
+ ###Criteria for User Management###
 - A User can be assigned one or more Roles within the Application
 1. Suggested Roles: Read, Edit, Update, Manage, and/or Administer
 2. Read - User will only be able to View various ToDo List/Tags
@@ -29,7 +29,8 @@
 - A User can self-register or be pre-registered by an Administrator
 - Once a User has an ID to login, the ID cannot be changed
 - User can change contact information and reset their password
-###Criteria for Interface
+- 
+###Criteria for Interface###
 1. Must have a text-base navigation menubar
 2. Must have a image-based navigation menubar with common actions; can be Role based but not necessary
 3. Body must be split into two sections
