@@ -29,7 +29,7 @@
 - A User can self-register or be pre-registered by an Administrator
 - Once a User has an ID to login, the ID cannot be changed
 - User can change contact information and reset their password
-- 
+
 ### Criteria for Interface ###
 1. Must have a text-base navigation menubar
 2. Must have a image-based navigation menubar with common actions; can be Role based but not necessary
