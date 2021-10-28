@@ -21,13 +21,13 @@
  
 ### Criteria for User Management
 1) A User can be assigned one or more Roles within the Application 
- * Suggested Roles: Read, Edit, Accounting, Update, Manage, and/or Administer 
- * Read - User will only be able to View various Items List/Tags and associated PO
- * Edit - User will be able to Read and Create/Modify Item List(s) and Items but not Update an individual Item
- * Accounting - User will be able to create a PO with pending Inventory; Cannot be apart of any other Role
- * Update - User will be able to Read and Update individual Items details (Such as Description; They will NOT be able to modify an Item(s) PO information
- * Manage - User will be able to Read, Edit, and Update but will NOT be able to manage User's
- * Administer - User will be able to Read, Edit, Update, and Manage; in addition, they will be able to Add, Edit, and Remove Users from the Application; This will generally also include changing User Password and User contact
+ * **Suggested Roles**: Read, Edit, Accounting, Update, Manage, and/or Administer 
+ * **Read** - User will only be able to View various Items List/Tags and associated PO
+ * **Edit** - User will be able to Read and Create/Modify Item List(s) and Items but not Update an individual Item
+ * **Accounting** - User will be able to create a PO with pending Inventory; Cannot be apart of any other Role
+ * **Update** - User will be able to Read and Update individual Items details (Such as Description; They will NOT be able to modify an Item(s) PO information
+ * **Manage** - User will be able to Read, Edit, and Update but will NOT be able to manage User's
+ * **Administer** - User will be able to Read, Edit, Update, and Manage; in addition, they will be able to Add, Edit, and Remove Users from the Application; This will generally also include changing User Password and User contact
 2) A User can self-register or be pre-registered by an Administrator
 3) Once a User has an ID to login, the ID cannot be changed
 4) User can change contact information and reset their password
@@ -36,8 +36,8 @@
 1) Must have a text-base navigation menubar
 2) Must have a image-based navigation menubar with common actions; can be Role based but not necessary
 3) Body must be split into two sections
-* Left-side: an expandable list of Categories
-* Right-side: shows the ToDo items of the Category 
+* **Left-side**: an expandable list of Categories
+* **Right-side**: shows the ToDo items of the Category 
 4) The Right-Side of the Body, must be a GridView of the ToDo items
 5) The GridView rows must be clickable (Single or Double; suggest Double) to show a DetailsView of the Item clicked
 6) DetailsView must provide the ability appropriate with the User's Role
