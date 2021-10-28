@@ -7,17 +7,17 @@
 
 ## Criteria: 
 * Criteria for Item
- 1 Each Item can be stand-alone (Uncategorized) or part of a Category of Item's (Categorized)
- 2 Each Item can have zero or more Tags associated with it Tags are independent of Categories and can be used by users to group visually similar Item 
- 3 Each Item  must have a Created Date and Last Updated Date
- 4 Must have a way to manage Purchase Orders (PO); Keep it simple and oriented to what you need for the application, nothing more.
- 5 Each Item must have a Quantity value; It should be broken down into Current, Reorder Level, and Pending property
+ 1) Each Item can be stand-alone (Uncategorized) or part of a Category of Item's (Categorized)
+ 2) Each Item can have zero or more Tags associated with it Tags are independent of Categories and can be used by users to group visually similar Item 
+ 3) Each Item  must have a Created Date and Last Updated Date
+ 4) Must have a way to manage Purchase Orders (PO); Keep it simple and oriented to what you need for the application, nothing more.
+ 5) Each Item must have a Quantity value; It should be broken down into Current, Reorder Level, and Pending property
 * Current is the Active value in stock; this will go up and down over time
 * Reorder Level will be entered once and should only be changed by the appropriate Role
 * Pending should be based on a Pending Receipt PO .
- 6 Each Item must have a Short and Long description
- 7 Each Item must be associated with a current/past PO
-8 Draw down of an Item Quantity must come from the older PO first; effectively working from Oldest to Newest PO
+ 6) Each Item must have a Short and Long description
+ 7) Each Item must be associated with a current/past PO
+ 8) Draw down of an Item Quantity must come from the older PO first; effectively working from Oldest to Newest PO
  
 ## Criteria for User Management
 1 A User can be assigned one or more Roles within the Application 
