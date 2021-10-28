@@ -6,7 +6,7 @@
 * Interface
 
 ## Criteria: 
-* Criteria for Item
+### Criteria for Item
  1) Each Item can be stand-alone (Uncategorized) or part of a Category of Item's (Categorized)
  2) Each Item can have zero or more Tags associated with it Tags are independent of Categories and can be used by users to group visually similar Item 
  3) Each Item  must have a Created Date and Last Updated Date
@@ -19,7 +19,7 @@
  7) Each Item must be associated with a current/past PO
  8) Draw down of an Item Quantity must come from the older PO first; effectively working from Oldest to Newest PO
  
-## Criteria for User Management
+### Criteria for User Management
 1) A User can be assigned one or more Roles within the Application 
  * Suggested Roles: Read, Edit, Accounting, Update, Manage, and/or Administer 
  * Read - User will only be able to View various Items List/Tags and associated PO
@@ -32,7 +32,7 @@
 3) Once a User has an ID to login, the ID cannot be changed
 4) User can change contact information and reset their password
 
-## Criteria for Interface
+### Criteria for Interface
 1) Must have a text-base navigation menubar
 2) Must have a image-based navigation menubar with common actions; can be Role based but not necessary
 3) Body must be split into two sections
