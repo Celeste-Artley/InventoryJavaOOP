@@ -9,5 +9,18 @@ package invproject;
  * @author Celeste Artley
  */
 public class Category {
+    private String name = "";
+    public Category(String name)
+    {
+        this.name = name;
+    }
+    public String GetName()
+    {
+        return name;
+    }
+    public void SetName(String name)
+    {
+        this.name = name;
+    }
     
 }
