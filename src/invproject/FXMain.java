@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Celes
+ * @author Celeste Artley
  */
 public class FXMain extends Application {
     

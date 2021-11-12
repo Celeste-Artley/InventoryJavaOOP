@@ -8,6 +8,6 @@ package invproject;
  *
  * @author Celeste Artley
  */
-public class Item {
+public class User {
     
 }
