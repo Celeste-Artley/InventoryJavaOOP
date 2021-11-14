@@ -8,8 +8,8 @@ package invproject;
  *
  * @author Celeste Artley
  */
-public class UserDatabase implements IDatabase {
-    public void Create()
+public class UserDatabase implements IDatabase<String> {
+    public void Create(String s)
     {
         
     }
@@ -18,11 +18,11 @@ public class UserDatabase implements IDatabase {
        String returnString = "";
        return returnString;
     }
-    public void Update()
+    public void Update(String s)
     {
         
     }
-    public void Delete()
+    public void Delete(String s)
     {
         
     }

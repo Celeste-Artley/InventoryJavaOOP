@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Celeste Artley
  */
-public class TagDatabase implements IDatabase {
+public class TagDatabase implements IDatabase<String> {
     private List<Tag> tags = new ArrayList<Tag>();
 
     public List<Tag> getTags() {
@@ -21,25 +21,41 @@ public class TagDatabase implements IDatabase {
         Tag val = null;
         for (Tag t : tags)
         {
-            val = t;
+            if(t.GetName() == s)
+            {
+                val = t;
+            }
         }
         return val;
     }
-    public void Create()
+    public void Create(String s)
     {
-        
+        Tag newTag= new Tag(s);
+        tags.add(newTag);
     }
     public String Read()
     {
        String returnString = "";
        return returnString;
     }
-    public void Update()
+    public void Update(String s)
     {
-        
+        for (Tag t : tags)
+        {
+            if(t.GetName() == s)
+            {
+               t.SetName(s);
+            }
+        }
     }
-    public void Delete()
+    public void Delete(String s)
     {
-        
+        for (Tag t : tags)
+        {
+            if(t.GetName() == s)
+            {
+               tags.remove(t);
+            }
+        }
     }
 }
