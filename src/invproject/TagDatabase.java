@@ -4,11 +4,27 @@
  */
 package invproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Celeste Artley
  */
 public class TagDatabase implements IDatabase {
+    private List<Tag> tags = new ArrayList<Tag>();
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+    public Tag getTag(String s) {
+        Tag val = null;
+        for (Tag t : tags)
+        {
+            val = t;
+        }
+        return val;
+    }
     public void Create()
     {
         
