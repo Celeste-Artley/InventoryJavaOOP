@@ -52,4 +52,13 @@ public class TagDatabase implements IDatabase<String, Tag> {
             }
         }
     }
+    private void Save()
+    {
+        
+    }
+    private List<Tag> Load()
+    {
+        List<Tag> tags = new ArrayList<Tag>();
+        return tags;
+    }
 }

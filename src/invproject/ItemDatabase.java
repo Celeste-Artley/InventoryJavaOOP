@@ -53,4 +53,13 @@ public class ItemDatabase implements IDatabase<String, Item> {
             }
         }
     }
+    private void Save()
+    {
+        
+    }
+    private List<Item> Load()
+    {
+        List<Item> items = new ArrayList<Item>();
+        return items;
+    }
 }

@@ -49,4 +49,13 @@ public class CategoryDatabase implements IDatabase<String, Category> {
             }
         }
     }
+    private void Save()
+    {
+        
+    }
+    private List<Category> Load()
+    {
+        List<Category> categories = new ArrayList<Category>();
+        return categories;
+    }
 }

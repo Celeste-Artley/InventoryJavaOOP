@@ -53,4 +53,13 @@ public class UserDatabase implements IDatabase<String, User> {
             }
         }
     }
+    private void Save()
+    {
+        
+    }
+    private List<User> Load()
+    {
+        List<User> users = new ArrayList<User>();
+        return users;
+    }
 }

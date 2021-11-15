@@ -16,7 +16,7 @@ import javafx.event.ActionEvent;
 public class Controller {
     
     ItemDatabase itemDatabase = new ItemDatabase();
-    TagDatabase TagDatabase = new TagDatabase();
+    TagDatabase tagDatabase = new TagDatabase();
     UserDatabase userDatabase = new UserDatabase();
     CategoryDatabase categoryDatabase = new CategoryDatabase();
     

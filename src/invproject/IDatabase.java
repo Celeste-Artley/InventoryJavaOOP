@@ -13,4 +13,5 @@ public interface IDatabase<T, E> {
     E Read(T value);
     void Update(T value);
     void Delete(T value);
+   
 }
