@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Documents/GitHub/InventoryJavaOOP/src/invproject/TagDatabase.java</file>
+            <file>file:/F:/Documents/GitHub/InventoryJavaOOP/src/invproject/UserDatabase.java</file>
+            <file>file:/F:/Documents/GitHub/InventoryJavaOOP/src/invproject/IDatabase.java</file>
+            <file>file:/F:/Documents/GitHub/InventoryJavaOOP/src/invproject/CategoryDatabase.java</file>
+            <file>file:/F:/Documents/GitHub/InventoryJavaOOP/src/invproject/ItemDatabase.java</file>
         </group>
     </open-files>
 </project-private>

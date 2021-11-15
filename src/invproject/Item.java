@@ -11,20 +11,30 @@ import java.util.*;
 public class Item {
     
     private List<Tag> tags = new ArrayList<Tag>();
+    private String name;
     private String categoryName;
     private Category category = new Category(categoryName);
     private POrder orderInfo = new POrder();
     private Integer quantity;
     private String lDescription, sDescription;
     
-    public Item(String Name, Integer Quantity, String lDesc, String sDesc)
+    public Item(String Name,String CategoryName, Integer Quantity, String lDesc, String sDesc)
     {
-        categoryName = Name;
+        name = Name;
+        categoryName = CategoryName;
         quantity = Quantity;
         lDescription = lDesc;
         sDescription = sDesc;
     }
     //Getters and Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     public List<Tag> getTags() {
         return tags;
     }

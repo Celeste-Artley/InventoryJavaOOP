@@ -14,11 +14,11 @@ public class Category {
     {
         this.name = name;
     }
-    public String GetName()
+    public String getName()
     {
         return name;
     }
-    public void SetName(String name)
+    public void setName(String name)
     {
         this.name = name;
     }

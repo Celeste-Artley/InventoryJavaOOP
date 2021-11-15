@@ -4,26 +4,49 @@
  */
 package invproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Celeste Artley
  */
-public class CategoryDatabase implements IDatabase<String> {
-    public void Create(String s)
+public class CategoryDatabase implements IDatabase<String, Category> {
+    private List<Category> categories = new ArrayList<Category>();
+    public void Create(Category c)
     {
-        
+        categories.add(c);
     }
-    public String Read()
+    public Category Read(String s)
     {
-       String returnString = "";
-       return returnString;
+       Category val = null;
+        for (Category c : categories)
+        {
+            if(c.getName() == s)
+            {
+                val = c;
+            }
+        }
+        return val;
     }
     public void Update(String s)
     {
-        
+        for (Category c : categories)
+        {
+            if(c.getName() == s)
+            {
+               c.setName(s);
+            }
+        }
     }
     public void Delete(String s)
     {
-        
+        for (Category c : categories)
+        {
+            if(c.getName() == s)
+            {
+               categories.remove(c);
+            }
+        }
     }
 }

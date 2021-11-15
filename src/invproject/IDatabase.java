@@ -8,9 +8,9 @@ package invproject;
  *
  * @author Celeste Artley
  */
-public interface IDatabase<T> {
-    void Create(T value);
-    String Read();
+public interface IDatabase<T, E> {
+    void Create(E Value);
+    E Read(T value);
     void Update(T value);
     void Delete(T value);
 }
