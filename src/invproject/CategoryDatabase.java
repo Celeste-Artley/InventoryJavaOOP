@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class CategoryDatabase implements IDatabase<String, Category> {
     private List<Category> categories = new ArrayList<Category>();
+    void CategoryDatabase()
+    {
+        categories = Load();
+    }
     public void Create(Category c)
     {
         categories.add(c);
@@ -49,7 +53,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
             }
         }
     }
-    private void Save()
+    public void Save()
     {
         
     }

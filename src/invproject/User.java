@@ -25,7 +25,7 @@ public class User {
     {
         this.username = username;
     }
-    public String getPassWord()
+    public String getPassword()
     {
         return password;
     }
@@ -33,5 +33,8 @@ public class User {
     {
         this.password = password;
     }
-    
+    public String toString()
+    {
+        return this.getUsername() + " " + this.getPassword();
+    }
 }

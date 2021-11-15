@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class TagDatabase implements IDatabase<String, Tag> {
     private List<Tag> tags = new ArrayList<Tag>();
+    
+    void TagDatabase()
+    {
+        tags = Load();
+    }
 
     public List<Tag> getTags() {
         return tags;
@@ -52,7 +57,7 @@ public class TagDatabase implements IDatabase<String, Tag> {
             }
         }
     }
-    private void Save()
+    public void Save()
     {
         
     }

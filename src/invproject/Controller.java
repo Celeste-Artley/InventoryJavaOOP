@@ -6,6 +6,7 @@ package invproject;
  * and open the template in the editor.
  */
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 /**
@@ -71,5 +72,14 @@ public class Controller {
     public void UpdateCategory()
     {
         
+    }
+    // Other Functions -----------------------------------------------
+    public void OnCloseButton()
+    {
+        //User Gregg = new User("greggIsTheBest", "password123");
+        //userDatabase.Create(Gregg);
+        System.out.println(userDatabase.Read("greggIsTheBest"));
+        userDatabase.Save();
+        Platform.exit();
     }
 }

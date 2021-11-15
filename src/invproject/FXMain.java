@@ -16,7 +16,6 @@ import javafx.stage.Stage;
  * @author Celeste Artley
  */
 public class FXMain extends Application {
-    
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
@@ -24,12 +23,14 @@ public class FXMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
+        
     }
     
 }

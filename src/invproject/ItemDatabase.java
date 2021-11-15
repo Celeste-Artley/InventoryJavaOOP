@@ -14,6 +14,11 @@ import java.util.List;
 public class ItemDatabase implements IDatabase<String, Item> {
     private List<Item> items = new ArrayList<Item>();
     
+    void ItemDatabase()
+    {
+        items = Load();
+    }
+    
     public List<Item> getItmes()
     {
         return items;
@@ -53,7 +58,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
             }
         }
     }
-    private void Save()
+    public void Save()
     {
         
     }
