@@ -33,8 +33,5 @@ public class User {
     {
         this.password = password;
     }
-    public String toString()
-    {
-        return this.getUsername() + " " + this.getPassword();
-    }
+    
 }

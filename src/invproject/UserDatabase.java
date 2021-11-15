@@ -18,11 +18,12 @@ import java.io.*;
 public class UserDatabase implements IDatabase<String, User> {
     private List<User> users = new ArrayList<User>();
     
-    void UserDatabase()
+    public UserDatabase()
     {
-        System.out.print("attempting to load.");
+        
         try
         {
+            System.out.println("attempting to load.");
             users = Load();
         }
         catch(Exception e)
@@ -73,9 +74,24 @@ public class UserDatabase implements IDatabase<String, User> {
     }
     public void Save()
     {
-        System.out.print("attempting to save");
+        //try's to write with all the user data
         try
         {
+            //Checks to see if the file exist
+            File file = new File("users.txt");
+            if(!file.exists())
+            {
+                //If the file does not exist trys to create a new one
+                try
+                {
+                    file.createNewFile();
+                }
+                catch(IOException e)
+                {
+                    System.out.print(e);  
+                }
+            }
+            //writes for each user saved data into users.txt
             FileWriter fwriter = new FileWriter("users.txt");
             for(User u : users)
             {
@@ -96,6 +112,7 @@ public class UserDatabase implements IDatabase<String, User> {
         File file = new File("users.txt");
         if(file.canRead())
         {
+           System.out.println("Can read the file.");
            Scanner scanner = new Scanner(file);
            while(scanner.hasNext())
            {
@@ -103,6 +120,9 @@ public class UserDatabase implements IDatabase<String, User> {
                String password = scanner.next();
                User u = new User(username, password);
                users.add(u);
+               //Looks like the Read function does not do exactly what I want it too here
+               
+               System.out.println(this.Read(u.getUsername()));
            }
            scanner.close();
         }
