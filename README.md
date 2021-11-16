@@ -24,7 +24,7 @@
  * **Suggested Roles**: Read, Edit, Accounting, Update, Manage, and/or Administer 
  * **Read** - User will only be able to View various Items List/Tags and associated PO
  * **Edit** - User will be able to Read and Create/Modify Item List(s) and Items but not Update an individual Item
- * **Accounting** - User will be able to create a PO with pending Inventory; Cannot be apart of any other Role
+ * **Accounting** - User will be able to create a PO with pending Inventory; Cannot be a part of any other Role
  * **Update** - User will be able to Read and Update individual Items details (Such as Description; They will NOT be able to modify an Item(s) PO information
  * **Manage** - User will be able to Read, Edit, and Update but will NOT be able to manage User's
  * **Administer** - User will be able to Read, Edit, Update, and Manage; in addition, they will be able to Add, Edit, and Remove Users from the Application; This will generally also include changing User Password and User contact
