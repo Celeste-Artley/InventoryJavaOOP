@@ -6,6 +6,8 @@ package invproject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.io.*;
 
 /**
  *
@@ -62,9 +64,16 @@ public class TagDatabase implements IDatabase<String, Tag> {
         try
         {
             File file = new File("user.txt");
-            if(!file.exist())
+            if(!file.exists())
             {
-                
+               try 
+               {
+                   file.createNewFile();                
+               }
+               catch(IOException e)
+               {
+                   System.out.print(e);
+               }
             }
         }
     }
