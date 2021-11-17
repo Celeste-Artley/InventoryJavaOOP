@@ -59,7 +59,13 @@ public class TagDatabase implements IDatabase<String, Tag> {
     }
     public void Save()
     {
-        //tags.
+        for (Tag t : tags)
+        {
+            if(t.getName() == s)
+            {
+                
+            } 
+        }
     }
     private List<Tag> Load()
     {
