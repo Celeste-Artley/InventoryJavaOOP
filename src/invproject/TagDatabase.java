@@ -61,8 +61,8 @@ public class TagDatabase implements IDatabase<String, Tag> {
     }
     public void Save()
     {
-        try
-        {
+        //try
+        //{
             File file = new File("user.txt");
             if(!file.exists())
             {
@@ -75,7 +75,8 @@ public class TagDatabase implements IDatabase<String, Tag> {
                    System.out.print(e);
                }
             }
-        }
+        //}
+        
     }
     private List<Tag> Load()
     {
