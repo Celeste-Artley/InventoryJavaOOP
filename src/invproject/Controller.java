@@ -16,10 +16,10 @@ import javafx.event.ActionEvent;
 
 public class Controller {
     
-    ItemDatabase itemDatabase = new ItemDatabase();
-    TagDatabase tagDatabase = new TagDatabase();
-    UserDatabase userDatabase = new UserDatabase();
-    CategoryDatabase categoryDatabase = new CategoryDatabase();
+    public static ItemDatabase itemDatabase = new ItemDatabase();
+    public static TagDatabase tagDatabase = new TagDatabase();
+    public static UserDatabase userDatabase = new UserDatabase();
+    public static CategoryDatabase categoryDatabase = new CategoryDatabase();
     
     //User functions ----------------------------------
     public void AddNewUser()
@@ -78,7 +78,6 @@ public class Controller {
     {
         //User Gregg = new User("greggIsTheBest", "password123");
         //userDatabase.Create(Gregg);
-        System.out.println(userDatabase.Read("greggIsTheBest"));
         userDatabase.Save();
         Platform.exit();
     }

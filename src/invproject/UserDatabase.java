@@ -23,8 +23,10 @@ public class UserDatabase implements IDatabase<String, User> {
         
         try
         {
-            System.out.println("attempting to load.");
+            //System.out.println("attempting to load.");
+            System.out.println(users.size());
             users = Load();
+            System.out.println(users.size());
         }
         catch(Exception e)
         {
@@ -42,11 +44,16 @@ public class UserDatabase implements IDatabase<String, User> {
     }
     public User Read(String s)
     {
+        System.out.println("Atempting to get user: " + s + " from the database");
         User val = null;
+        //System.out.println("the number of users in the database are: " + users.size());
         for (User u : users)
         {
+            System.out.println("in the users loop checking the user "+ u.getUsername() + " vs " + s);
+            
             if(u.getUsername() == s)
             {
+                System.out.println("I found a user in the database with the same name as: " + u);
                 val = u;
             }
         }
@@ -108,7 +115,7 @@ public class UserDatabase implements IDatabase<String, User> {
     }
     private List<User> Load() throws FileNotFoundException
     {
-        List<User> users = new ArrayList<User>();
+        List<User> returnUsers = new ArrayList<User>();
         File file = new File("users.txt");
         if(file.canRead())
         {
@@ -119,13 +126,11 @@ public class UserDatabase implements IDatabase<String, User> {
                String username = scanner.next();
                String password = scanner.next();
                User u = new User(username, password);
-               users.add(u);
-               //Looks like the Read function does not do exactly what I want it too here
-               
-               System.out.println(this.Read(u.getUsername()));
+               returnUsers.add(u);
+               System.out.println(this.Read(username));
            }
            scanner.close();
         }
-        return users;
+        return returnUsers;
     }
 }
