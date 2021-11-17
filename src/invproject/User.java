@@ -11,17 +11,19 @@ package invproject;
 public class User {
     private String username = "";
     private String password = "";
+    private String email = "";
     
-    public User(String username, String password)
+    public User(String username, String password, String email)
     {
         this.username = username;
         this.password = password;
+        this.email = email;
     }
     public String getUsername()
     {
         return username;
     }
-    public void setName(String username)
+    public void setUsername(String username)
     {
         this.username = username;
     }
@@ -33,5 +35,14 @@ public class User {
     {
         this.password = password;
     }
+    public String getEmail()
+    {
+        return username;
+    }
+    public void setEmail(String password)
+    {
+        this.password = password;
+    }
+    
     
 }

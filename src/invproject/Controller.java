@@ -76,8 +76,8 @@ public class Controller {
     // Other Functions -----------------------------------------------
     public void OnCloseButton()
     {
-        //User Gregg = new User("greggIsTheBest", "password123");
-        //userDatabase.Create(Gregg);
+        User Gregg = new User("greggIsTheBest", "password123", "testemail@email.com");
+        userDatabase.Create(Gregg);
         userDatabase.Save();
         Platform.exit();
     }

@@ -33,7 +33,6 @@
 -->
 
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
@@ -48,8 +47,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.TreeView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -57,7 +54,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -74,7 +71,7 @@
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences…" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem mnemonicParsing="false" onAction="#OnCloseButton" text="Quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
@@ -93,18 +90,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Account">
           <items>
-            <MenuItem id="accountName" fx:id="menuAccount" mnemonicParsing="false" onAction="#handleMenuAccount" text="Account Name">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                           <image>
-                              <Image url="@../Downloads/ProfileTransparent.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuItem>
+            <MenuItem id="accountName" fx:id="menuAccount" mnemonicParsing="false" onAction="#handleMenuAccount" text="Account Name" />
                   <MenuItem id="accountRole" disable="true" mnemonicParsing="false" text="Administrator" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="manageUsers" mnemonicParsing="false" text="Manage Users" />

@@ -65,7 +65,7 @@ public class UserDatabase implements IDatabase<String, User> {
         {
             if(u.getUsername() == s)
             {
-               u.setName(s);
+               u.setUsername(s);
             }
         }
     }
@@ -102,7 +102,7 @@ public class UserDatabase implements IDatabase<String, User> {
             FileWriter fwriter = new FileWriter("users.txt");
             for(User u : users)
             {
-                fwriter.write(u.getUsername() + " " + u.getPassword());
+                fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail());
             }
             fwriter.close();
         }
@@ -125,7 +125,8 @@ public class UserDatabase implements IDatabase<String, User> {
            {
                String username = scanner.next();
                String password = scanner.next();
-               User u = new User(username, password);
+               String email = scanner.next();
+               User u = new User(username, password, email);
                returnUsers.add(u);
            }
            scanner.close();
