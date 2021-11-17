@@ -59,12 +59,13 @@ public class TagDatabase implements IDatabase<String, Tag> {
     }
     public void Save()
     {
-        for (Tag t : tags)
+        try
         {
-            if(t.getName() == s)
+            File file = new File("user.txt");
+            if(!file.exist())
             {
                 
-            } 
+            }
         }
     }
     private List<Tag> Load()
