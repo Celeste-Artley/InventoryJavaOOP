@@ -24,9 +24,9 @@ public class UserDatabase implements IDatabase<String, User> {
         try
         {
             //System.out.println("attempting to load.");
-            System.out.println(users.size());
+            //System.out.println(users.size());
             users = Load();
-            System.out.println(users.size());
+            //System.out.println(users.size());
         }
         catch(Exception e)
         {
@@ -44,16 +44,16 @@ public class UserDatabase implements IDatabase<String, User> {
     }
     public User Read(String s)
     {
-        System.out.println("Atempting to get user: " + s + " from the database");
+        //System.out.println("Atempting to get user: " + s + " from the database");
         User val = null;
         //System.out.println("the number of users in the database are: " + users.size());
         for (User u : users)
         {
-            System.out.println("in the users loop checking the user "+ u.getUsername() + " vs " + s);
+           //System.out.println("in the users loop checking the user "+ u.getUsername() + " vs " + s);
             
             if(u.getUsername() == s)
             {
-                System.out.println("I found a user in the database with the same name as: " + u);
+                //System.out.println("I found a user in the database with the same name as: " + u);
                 val = u;
             }
         }
@@ -119,7 +119,7 @@ public class UserDatabase implements IDatabase<String, User> {
         File file = new File("users.txt");
         if(file.canRead())
         {
-           System.out.println("Can read the file.");
+           //System.out.println("Can read the file.");
            Scanner scanner = new Scanner(file);
            while(scanner.hasNext())
            {
@@ -127,7 +127,6 @@ public class UserDatabase implements IDatabase<String, User> {
                String password = scanner.next();
                User u = new User(username, password);
                returnUsers.add(u);
-               System.out.println(this.Read(username));
            }
            scanner.close();
         }
