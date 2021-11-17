@@ -33,13 +33,23 @@
 -->
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -47,7 +57,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invproject.Controller">
+<VBox prefHeight="600.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -58,7 +68,8 @@
             <Menu mnemonicParsing="false" text="Open Recent" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" onAction="#OnCloseButton" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
             <MenuItem mnemonicParsing="false" text="Revert" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Preferences…" />
@@ -80,39 +91,128 @@
             <MenuItem mnemonicParsing="false" text="Unselect All" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Account">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem id="accountName" fx:id="menuAccount" mnemonicParsing="false" onAction="#handleMenuAccount" text="Account Name">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                           <image>
+                              <Image url="@../Downloads/ProfileTransparent.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem id="accountRole" disable="true" mnemonicParsing="false" text="Administrator" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="manageUsers" mnemonicParsing="false" text="Manage Users" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Sign Out" />
           </items>
         </Menu>
       </menus>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
     </MenuBar>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane>
           <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
+                  <SplitPane layoutX="6.0" layoutY="96.0" orientation="VERTICAL" prefHeight="608.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="401.0" prefWidth="219.0">
+                           <children>
+                        <Label alignment="CENTER" layoutX="25.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Categories" textAlignment="CENTER" wrapText="false">
+                          <font>
+                            <Font size="18.0" fx:id="x1" />
+                          </font>
+                          <textFill>
+                            <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+                          </textFill>
+                        </Label>
+                              <TreeView editable="true" layoutY="45.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="657.0" prefWidth="219.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                                 <contextMenu>
+                                    <ContextMenu>
+                                      <items>
+                                          <MenuItem mnemonicParsing="false" text="Add" />
+                                        <MenuItem mnemonicParsing="false" text="Edit" />
+                                          <MenuItem mnemonicParsing="false" text="Delete" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu></TreeView>
+                              <Accordion layoutX="-1.0" layoutY="346.0" prefHeight="204.0" prefWidth="251.0">
+                                <panes>
+                                  <TitledPane animated="false" text="Categories">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                  </TitledPane>
+                                </panes>
+                                 <contextMenu>
+                                    <ContextMenu>
+                                      <items>
+                                          <MenuItem mnemonicParsing="false" text="Add" />
+                                        <MenuItem mnemonicParsing="false" text="Edit" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </Accordion>
+                              <Button layoutX="175.0" layoutY="15.0" mnemonicParsing="false" text="Add" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
           </children>
         </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
-          <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
-              <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="View" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-              </children>
-            </AnchorPane>
-          </content>
-        </ScrollPane>
-        <AnchorPane>
+        <AnchorPane prefWidth="719.0">
           <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                  <SplitPane layoutY="45.0" orientation="VERTICAL" prefHeight="704.0" prefWidth="671.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="669.0">
+                           <children>
+                        <Label alignment="CENTER" font="$x1" layoutX="18.0" layoutY="16.0" style="&#10;" text="ToDo for" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                              <Label id="categoryName" fx:id="categoryName" alignment="CENTER" layoutX="93.0" layoutY="16.0" style="&#10;" text="Category 1" textAlignment="CENTER" wrapText="false">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" fx:id="x11" />
+                                 </font>
+                                 <textFill>
+                                    <Color red="0.624" green="0.624" blue="0.624" fx:id="x21" />
+                                 </textFill>
+                              </Label>
+                              <SplitPane dividerPositions="0.6992031872509961, 0.9601593625498008" layoutY="45.0" orientation="VERTICAL" prefHeight="504.0" prefWidth="668.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                                <items>
+                                    <TableView prefHeight="331.0" prefWidth="666.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Item" />
+                                        <TableColumn prefWidth="75.0" text="Tag" />
+                                          <TableColumn prefWidth="92.0" text="Created Date" />
+                                          <TableColumn prefWidth="92.0" text="Last Modified" />
+                                          <TableColumn prefWidth="112.0" text="Short Description" />
+                                          <TableColumn prefWidth="118.0" text="Long Description" />
+                                          <TableColumn prefWidth="55.0" text="Current" />
+                                          <TableColumn prefWidth="55.0" text="Reorder" />
+                                          <TableColumn prefWidth="55.0" text="Pending" />
+                                      </columns>
+                                       <contextMenu>
+                                          <ContextMenu>
+                                            <items>
+                                              <MenuItem mnemonicParsing="false" text="Edit" />
+                                                <MenuItem mnemonicParsing="false" text="Add" />
+                                            </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                    </TableView>
+                                    <ListView prefHeight="336.0" prefWidth="730.0" />
+                                    <Label text="Detailed View" />
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
           </children>
         </AnchorPane>
       </items>
