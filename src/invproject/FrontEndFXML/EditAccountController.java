@@ -21,6 +21,14 @@ public class EditAccountController {
     private Scene scene;
     private Parent root;
     
+    public void updateUserEmail(ActionEvent event) throws IOException{
+        // Use newUserEmail.getText() and change the database file to match.
+    }
+    
+    public void updateUserPassword(ActionEvent event) throws IOException{
+        // Use newUserPassword.getText() and change the database file to match.
+    }
+    
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
