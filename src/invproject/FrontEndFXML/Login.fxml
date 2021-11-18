@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="56.0" layoutY="206.0" prefHeight="51.0" prefWidth="323.0">
+            <TextField fx:id="userName" layoutX="56.0" layoutY="206.0" prefHeight="51.0" prefWidth="323.0">
                <font>
                   <Font size="24.0" />
                </font>
@@ -64,7 +64,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <PasswordField layoutX="56.0" layoutY="307.0" prefHeight="43.0" prefWidth="323.0">
+            <PasswordField fx:id="userPassword" layoutX="56.0" layoutY="307.0" prefHeight="43.0" prefWidth="323.0">
                <font>
                   <Font size="24.0" />
                </font>
