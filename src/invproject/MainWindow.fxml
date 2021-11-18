@@ -58,7 +58,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invproject.MainWindowController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -94,7 +94,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Account">
           <items>
-            <MenuItem id="accountName" fx:id="menuAccount" mnemonicParsing="false" text="Account Name">
+            <MenuItem mnemonicParsing="false" text="Account Name">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
@@ -108,9 +108,9 @@
                   </MenuItem>
                   <MenuItem id="accountRole" disable="true" mnemonicParsing="false" text="Administrator" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="manageUsers" mnemonicParsing="false" text="Manage Users" />
+                  <MenuItem mnemonicParsing="false" text="Manage Users" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Sign Out" />
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
           </items>
         </Menu>
       </menus>

@@ -47,7 +47,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invproject.ManageUsersController">
   <children>
     <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
@@ -155,7 +155,7 @@
                         <Font size="15.0" />
                      </font>
                   </MenuButton>
-                  <Button fx:id="close" layoutX="313.0" layoutY="523.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="102.0" text="Close">
+                  <Button fx:id="close" layoutX="313.0" layoutY="523.0" mnemonicParsing="false" onAction="#changeSceneToMainWindow" prefHeight="39.0" prefWidth="102.0" text="Close">
                      <font>
                         <Font size="18.0" />
                      </font>
