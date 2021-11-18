@@ -55,7 +55,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
             }
         }
     }
-    public void Save()
+    /*public void Save()
     {
       try
       {
@@ -71,9 +71,18 @@ public class CategoryDatabase implements IDatabase<String, Category> {
                   System.out.print(e);
               }
            }
-           FileWriter fwriter = new FileWriter("Category.txt")
+           FileWriter fwriter = new FileWriter("Category.txt");
+           for(Category c : category)
+           {
+               fwriter.write(c.getName()+ " ");
+           }
+           fwriter.close();
       }
-    }
+      catch(IOException e)
+      {
+          System.out.print(e);
+      }
+    }*/
     private List<Category> Load()
     {
         List<Category> categories = new ArrayList<Category>();
