@@ -59,13 +59,23 @@ public class UserDatabase implements IDatabase<String, User> {
         }
         return val;
     }
-    public void Update(String s)
+    public void UpdatePassword(String s, String p)
     {
         for (User u : users)
         {
             if(u.getUsername() == s)
             {
-               u.setUsername(s);
+               u.setPassword(p);
+            }
+        }
+    }
+    public void UpdateEmail(String s, String e)
+    {
+        for (User u : users)
+        {
+            if(u.getUsername() == s)
+            {
+               u.setEmail(e);
             }
         }
     }
@@ -132,5 +142,10 @@ public class UserDatabase implements IDatabase<String, User> {
            scanner.close();
         }
         return returnUsers;
+    }
+
+    @Override
+    public void Update(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

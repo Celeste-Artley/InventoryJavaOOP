@@ -45,7 +45,7 @@ public class TagDatabase implements IDatabase<String, Tag> {
         {
             if(t.getName() == s)
             {
-               t.setName(s);
+               t.setName(s);    // This doesn't actually update anything; it just saves the exact same name it already had.
             }
         }
     }

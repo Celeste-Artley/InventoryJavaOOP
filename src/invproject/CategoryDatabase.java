@@ -39,7 +39,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
         {
             if(c.getName() == s)
             {
-               c.setName(s);
+               c.setName(s);    // This doesn't actually update anything; it just saves the exact same name it already had.
             }
         }
     }
