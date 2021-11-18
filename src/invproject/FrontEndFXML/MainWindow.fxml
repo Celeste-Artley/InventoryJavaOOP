@@ -94,7 +94,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Account">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#changeSceneToEditAccount" text="Account Name">
+            <MenuItem mnemonicParsing="false" onAction="#changeSceneToEditAccount" text="Edit Account">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
