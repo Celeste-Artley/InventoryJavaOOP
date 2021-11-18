@@ -6,6 +6,8 @@ package invproject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.io.*;
 
 /**
  *
@@ -55,7 +57,22 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     }
     public void Save()
     {
-        
+      try
+      {
+          File file = new File("user.txt");
+          if(!file.exists())
+          {
+              try
+              {
+                  file.createNewFile();
+              }
+              catch(IOException e)
+              {
+                  System.out.print(e);
+              }
+           }
+           FileWriter fwriter = new FileWriter("Category.txt")
+      }
     }
     private List<Category> Load()
     {
