@@ -15,7 +15,7 @@ import javafx.event.ActionEvent;
  */
 import java.util.Scanner;
 
-public class Controller {
+public class DatabaseController {
     
     public static ItemDatabase itemDatabase = new ItemDatabase();
     public static TagDatabase tagDatabase = new TagDatabase();
