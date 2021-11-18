@@ -59,10 +59,10 @@ public class TagDatabase implements IDatabase<String, Tag> {
             }
         }
     }
-    /*public void Save()
+    public void Save()
     {
-        //try
-        //{
+        try
+        {
             File file = new File("user.txt");
             if(!file.exists())
             {
@@ -75,19 +75,19 @@ public class TagDatabase implements IDatabase<String, Tag> {
                    System.out.print(e);
                }
             }
-            FileWriter fwriter = new FileWriter("user.txt");
-            for(User u : users)
+            FileWriter fwriter = new FileWriter("Tag.txt");
+            for(Tag t : tags)
             {
-                fwriter.write.(u.getUsername() + " " + u.getPassword() + " " + u.getEmail());
+                fwriter.write(t.getName() + " ");
             }
-            fwriter.close;
-        //}
-            catch(IOException e)
-            {
-                System.out.print(e);
-            }
+            fwriter.close();
+        }
+        catch(IOException e)
+        {
+            System.out.print(e);
+        }
         
-    }*/
+    }
     private List<Tag> Load()
     {
         List<Tag> tags = new ArrayList<Tag>();
