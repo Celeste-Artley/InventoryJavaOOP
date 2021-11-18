@@ -19,7 +19,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
         items = Load();
     }
     
-    public List<Item> getItmes()
+    public List<Item> getItems()
     {
         return items;
     }
@@ -38,13 +38,34 @@ public class ItemDatabase implements IDatabase<String, Item> {
         }
         return val;
     }
-    public void Update(String s)
+    public void UpdateCategory(String s, String c)
     {
         for (Item i : items)
         {
             if(i.getName() == s)
             {
-               i.setName(s);
+               Category newCat = new Category(c);
+               i.setCategory(newCat);
+            }
+        }
+    }
+    public void UpdateLongDesc(String s, String l)
+    {
+        for (Item i : items)
+        {
+            if(i.getName() == s)
+            {
+               i.setlDescription(l);
+            }
+        }
+    }
+    public void UpdateShortDesc(String s, String d)
+    {
+        for (Item i : items)
+        {
+            if(i.getName() == s)
+            {
+               i.setsDescription(d);
             }
         }
     }
@@ -66,5 +87,10 @@ public class ItemDatabase implements IDatabase<String, Item> {
     {
         List<Item> items = new ArrayList<Item>();
         return items;
+    }
+
+    @Override
+    public void Update(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

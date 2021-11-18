@@ -18,13 +18,13 @@ public class Item {
     private Integer quantity;
     private String lDescription, sDescription;
     
-    public Item(String Name,String CategoryName, Integer Quantity, String lDesc, String sDesc)
+    public Item(String Name, String CategoryName, Integer Quantity, String lDesc, String sDesc)
     {
-        name = Name;
-        categoryName = CategoryName;
-        quantity = Quantity;
-        lDescription = lDesc;
-        sDescription = sDesc;
+        this.name = Name;
+        this.categoryName = CategoryName;
+        this.quantity = Quantity;
+        this.lDescription = lDesc;
+        this.sDescription = sDesc;
     }
     //Getters and Setters
     public String getName() {
