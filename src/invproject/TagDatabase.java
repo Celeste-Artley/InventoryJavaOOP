@@ -63,7 +63,7 @@ public class TagDatabase implements IDatabase<String, Tag> {
     {
         try
         {
-            File file = new File("user.txt");
+            File file = new File("Tag.txt");
             if(!file.exists())
             {
                try 
