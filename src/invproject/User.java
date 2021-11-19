@@ -37,11 +37,11 @@ public class User {
     }
     public String getEmail()
     {
-        return username;
+        return email;
     }
-    public void setEmail(String password)
+    public void setEmail(String email)
     {
-        this.password = password;
+        this.email = email;
     }
     
     

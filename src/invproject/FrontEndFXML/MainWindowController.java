@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import invproject.FrontEndFXML.DatabaseUtils;
+import javafx.application.Platform;
 
 
 /**
@@ -49,6 +51,7 @@ public class MainWindowController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    DatabaseUtils dbUtils = new DatabaseUtils();
     
     public void changeSceneToEditAccount(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("EditAccount.fxml"));
@@ -73,5 +76,8 @@ public class MainWindowController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    public void onExit(){
+        dbUtils.DatabaseTest("greggIsTheBest");
     }
 }

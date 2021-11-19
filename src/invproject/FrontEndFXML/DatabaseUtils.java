@@ -1,10 +1,12 @@
-package invproject;
+package invproject.FrontEndFXML;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+import invproject.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,7 +17,7 @@ import javafx.event.ActionEvent;
  */
 import java.util.Scanner;
 
-public class DatabaseController {
+public class DatabaseUtils {
     
     public static ItemDatabase itemDatabase = new ItemDatabase();
     public static TagDatabase tagDatabase = new TagDatabase();
@@ -190,11 +192,12 @@ public class DatabaseController {
         categoryDatabase.Update(name);
     }
     // Other Functions -----------------------------------------------
-    public void OnCloseButton()
+    public void DatabaseTest(String s)
     {
-        User Gregg = new User("greggIsTheBest", "password123", "testemail@email.com");
-        userDatabase.Create(Gregg);
-        userDatabase.Save();
-        Platform.exit();
+        //User Gregg = new User("greggIsTheBest", "password123", "testemail@email.com");
+        //userDatabase.Create(Gregg);
+        //userDatabase.Save();
+        System.out.println(userDatabase.Read(s).getPassword());
+        
     }
 }
