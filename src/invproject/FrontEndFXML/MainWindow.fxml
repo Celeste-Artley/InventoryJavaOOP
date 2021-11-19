@@ -108,9 +108,9 @@
                   </MenuItem>
                   <MenuItem id="accountRole" disable="true" mnemonicParsing="false" text="Administrator" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Manage Users" />
+                  <MenuItem mnemonicParsing="false" onAction="#changeSceneToManageUsers" text="Manage Users" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log Out" />
           </items>
         </Menu>
       </menus>

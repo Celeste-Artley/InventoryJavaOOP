@@ -100,7 +100,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userPassword" layoutX="23.0" layoutY="250.0" prefHeight="45.0" prefWidth="305.0" text="EamplePassword123">
+                  <Label fx:id="userPassword" layoutX="23.0" layoutY="250.0" prefHeight="45.0" prefWidth="305.0" text="ExamplePassword123">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -126,7 +126,7 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmPassword" layoutX="700.0" layoutY="254.0" mnemonicParsing="false" onAction="#updateUserPassword" text="Confirm" />
+                  <Button fx:id="confirmPassword" layoutX="700.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateUserPassword" text="Confirm" />
                   <Label layoutX="23.0" layoutY="305.0" text="Role:" underline="true">
                      <font>
                         <Font size="14.0" />
