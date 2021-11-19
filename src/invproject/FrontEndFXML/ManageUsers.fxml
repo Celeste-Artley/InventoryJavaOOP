@@ -34,10 +34,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -80,7 +79,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userName" layoutX="23.0" layoutY="90.0" prefHeight="45.0" prefWidth="305.0" text="ExampleUsername" wrapText="true">
+                  <Label fx:id="userNameLabel" layoutX="23.0" layoutY="90.0" prefHeight="45.0" prefWidth="305.0" text="ExampleUsername" wrapText="true">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -90,7 +89,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userEmail" layoutX="23.0" layoutY="170.0" prefHeight="45.0" prefWidth="305.0" text="ExampleEmail@example.com" wrapText="true">
+                  <Label fx:id="userEmailLabel" layoutX="23.0" layoutY="170.0" prefHeight="45.0" prefWidth="305.0" text="ExampleEmail@example.com" wrapText="true">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -100,7 +99,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userPassword" layoutX="23.0" layoutY="250.0" prefHeight="45.0" prefWidth="305.0" text="ExamplePassword123">
+                  <Label fx:id="userPasswordLabel" layoutX="23.0" layoutY="250.0" prefHeight="45.0" prefWidth="305.0" text="ExamplePassword123">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -115,7 +114,7 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmEmail" layoutX="700.0" layoutY="179.0" mnemonicParsing="false" onAction="#updateUserEmail" text="Confirm" />
+                  <Button layoutX="700.0" layoutY="179.0" mnemonicParsing="false" onAction="#updateUserEmail" text="Confirm" />
                   <Label layoutX="365.0" layoutY="225.0" text="New Password:" underline="true">
                      <font>
                         <Font size="14.0" />
@@ -126,13 +125,13 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmPassword" layoutX="700.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateUserPassword" text="Confirm" />
+                  <Button layoutX="700.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateUserPassword" text="Confirm" />
                   <Label layoutX="23.0" layoutY="305.0" text="Role:" underline="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userRole" layoutX="23.0" layoutY="330.0" prefHeight="45.0" prefWidth="305.0" text="Role">
+                  <Label fx:id="userRoleLabel" layoutX="23.0" layoutY="330.0" prefHeight="45.0" prefWidth="305.0" text="Role">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -142,19 +141,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="newUserRole" layoutX="364.0" layoutY="328.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="153.0" text="Role">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Read" />
-                      <MenuItem mnemonicParsing="false" text="Edit" />
-                        <MenuItem mnemonicParsing="false" text="Accounting" />
-                        <MenuItem mnemonicParsing="false" text="Update" />
-                        <MenuItem mnemonicParsing="false" text="Manage" />
-                        <MenuItem mnemonicParsing="false" text="Admin" />
-                    </items>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </MenuButton>
+                  <ChoiceBox fx:id="newUserRole" layoutX="365.0" layoutY="340.0" prefHeight="45.0" prefWidth="150.0" />
+                  <Button layoutX="700.0" layoutY="350.0" mnemonicParsing="false" onAction="#updateUserRole" text="Confirm" />
                   <Button fx:id="close" layoutX="313.0" layoutY="523.0" mnemonicParsing="false" onAction="#changeSceneToMainWindow" prefHeight="39.0" prefWidth="102.0" text="Close">
                      <font>
                         <Font size="18.0" />

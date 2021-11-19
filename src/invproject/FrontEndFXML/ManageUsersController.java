@@ -6,10 +6,13 @@ package invproject.FrontEndFXML;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -21,12 +24,32 @@ public class ManageUsersController {
     private Scene scene;
     private Parent root;
     
+    @FXML
+    private Label userNameLabel;
+    @FXML
+    private Label userEmailLabel;
+    @FXML
+    private Label userPasswordLabel;
+    @FXML
+    private Label userRoleLabel;
+    
+    @FXML 
+    private ChoiceBox newUserRole;
+    
+    public void initialize() {
+        newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Adminstrator");
+    }
+    
     public void updateUserEmail(ActionEvent event) throws IOException{
         // Use newUserEmail.getText() and change the database file to match.
     }
     
     public void updateUserPassword(ActionEvent event) throws IOException{
         // Use newUserPassword.getText() and change the database file to match.
+    }
+    
+    public void updateUserRole(ActionEvent event) throws IOException{
+        
     }
     
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{

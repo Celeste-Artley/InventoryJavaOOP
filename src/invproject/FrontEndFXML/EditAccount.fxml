@@ -63,7 +63,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userName" layoutX="23.0" layoutY="90.0" prefHeight="45.0" prefWidth="305.0" text="ExampleUsername" wrapText="true">
+                  <Label fx:id="userNameLabel" layoutX="23.0" layoutY="90.0" prefHeight="45.0" prefWidth="305.0" text="ExampleUsername" wrapText="true">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -73,7 +73,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userEmail" layoutX="23.0" layoutY="170.0" prefHeight="45.0" prefWidth="305.0" text="ExampleEmail@example.com" wrapText="true">
+                  <Label fx:id="userEmailLabel" layoutX="23.0" layoutY="170.0" prefHeight="45.0" prefWidth="305.0" text="ExampleEmail@example.com" wrapText="true">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -83,7 +83,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userPassword" layoutX="23.0" layoutY="250.0" prefHeight="45.0" prefWidth="305.0" text="ExamplePassword123">
+                  <Label fx:id="userPasswordLabel" layoutX="23.0" layoutY="250.0" prefHeight="45.0" prefWidth="305.0" text="ExamplePassword123">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -98,7 +98,7 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmEmail" layoutX="700.0" layoutY="179.0" mnemonicParsing="false" onAction="#updateUserEmail" text="Confirm" />
+                  <Button layoutX="700.0" layoutY="179.0" mnemonicParsing="false" onAction="#updateUserEmail" text="Confirm" />
                   <Label layoutX="365.0" layoutY="225.0" text="New Password:" underline="true">
                      <font>
                         <Font size="14.0" />
@@ -109,13 +109,13 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmPassword" layoutX="700.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateUserPassword" text="Confirm" />
+                  <Button layoutX="700.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateUserPassword" text="Confirm" />
                   <Label layoutX="23.0" layoutY="305.0" text="Role:" underline="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="userRole" layoutX="23.0" layoutY="330.0" prefHeight="45.0" prefWidth="305.0" text="Role">
+                  <Label fx:id="userRoleLabel" layoutX="23.0" layoutY="330.0" prefHeight="45.0" prefWidth="305.0" text="Role">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

@@ -6,10 +6,12 @@ package invproject.FrontEndFXML;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -20,6 +22,15 @@ public class EditAccountController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+    @FXML
+    private Label userNameLabel;
+    @FXML
+    private Label userEmailLabel;
+    @FXML
+    private Label userPasswordLabel;
+    @FXML
+    private Label userRoleLabel;
     
     public void updateUserEmail(ActionEvent event) throws IOException{
         // Use newUserEmail.getText() and change the database file to match.
