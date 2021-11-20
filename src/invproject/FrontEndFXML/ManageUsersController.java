@@ -45,7 +45,7 @@ public class ManageUsersController {
     private ChoiceBox newUserRole;
     
     public void initialize() {
-        newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Adminstrator");
+        newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Administrator");
     }
     
     public void updateUserEmail(ActionEvent event) throws IOException{
