@@ -45,14 +45,14 @@ public class EditAccountController {
     }
     
     public void updateUserEmail(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdateEmail(DatabaseUtils.loggedInUser.getUsername(), newUserEmail.getText());
-        DatabaseUtils.userDatabase.Save();
+        //DatabaseUtils.userDatabase.UpdateEmail(DatabaseUtils.loggedInUser.getUsername(), newUserEmail.getText());
+        //DatabaseUtils.userDatabase.Save();
         userEmailLabel.setText(newUserEmail.getText());
     }
     
     public void updateUserPassword(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdatePassword(DatabaseUtils.loggedInUser.getUsername(), newUserPassword.getText());
-        DatabaseUtils.userDatabase.Save();
+        //DatabaseUtils.userDatabase.UpdatePassword(DatabaseUtils.loggedInUser.getUsername(), newUserPassword.getText());
+        //DatabaseUtils.userDatabase.Save();
         userPasswordLabel.setText(newUserPassword.getText());
     }
     
