@@ -1,2 +1,1 @@
-greggIsTheBest password123 testemail@email.com
-bob notThesSamePass testemail@email.com
+TestDev Password123 test@dev.com true

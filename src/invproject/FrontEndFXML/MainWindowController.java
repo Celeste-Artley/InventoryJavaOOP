@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import invproject.FrontEndFXML.DatabaseUtils;
+import invproject.User;
 import javafx.application.Platform;
 import javafx.scene.control.TextField;
 
@@ -61,15 +62,23 @@ public class MainWindowController {
         stage = (Stage)categoryName.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        DatabaseUtils.loggedInUser = null;
         stage.show();
     }
     
-    public void changeSceneToManageUsers(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("ManageUsers.fxml"));
-        stage = (Stage)categoryName.getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void changeSceneToManageUsers(ActionEvent event) throws IOException{    
+        if(DatabaseUtils.loggedInUser.getRole())
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("ManageUsers.fxml"));
+            stage = (Stage)categoryName.getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            System.out.println("You are not an admin. please log into an anmin account");
+        }
     }
     
     public void addCategory(ActionEvent event) throws IOException{
@@ -84,6 +93,16 @@ public class MainWindowController {
         stage.show();
     }
     public void onExit(){
+        /**
+         * Saves all the database to local text files, then exits the application.
+         */
+        //User dev = new User("TestDev", "Password123", "test@dev.com", true);
+        //DatabaseUtils.userDatabase.Create(dev);
+        
         DatabaseUtils.userDatabase.Save();
+        DatabaseUtils.itemDatabase.Save();
+        DatabaseUtils.tagDatabase.Save();
+        DatabaseUtils.categoryDatabase.Save();
+        Platform.exit();
     }
 }

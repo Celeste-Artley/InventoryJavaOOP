@@ -4,6 +4,7 @@
  */
 package invproject.FrontEndFXML;
 
+import invproject.User;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,14 @@ public class LoginController {
     private Scene scene;
     private Parent root;
     
+    
+    
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{
+        //this is for testing and will be the "default user" that the program uses to log in
+        User dev = DatabaseUtils.userDatabase.Read("TestDev");
+        DatabaseUtils.loggedInUser = dev;
+        //this is for testing and will be changed based on the values in the username/password field.
+        
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
