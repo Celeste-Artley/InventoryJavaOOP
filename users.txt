@@ -1,1 +1,2 @@
-TestDev Password123 test@dev.com true
+admin 123 admin@dev.com true
+test 123 test@dev.com false

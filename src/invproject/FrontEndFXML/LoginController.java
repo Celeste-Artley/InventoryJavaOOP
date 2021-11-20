@@ -35,12 +35,13 @@ public class LoginController {
     
     
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{
-        //this is for testing and will be the "default user" that the program uses to log in
-        User dev = DatabaseUtils.userDatabase.Read("TestDev");
-        DatabaseUtils.loggedInUser = dev;
-        //this is for testing and will be changed based on the values in the username/password field.
+        User loginUser = DatabaseUtils.userDatabase.Read(userName.getText());
+        if(loginUser != null)
+        {
+            DatabaseUtils.loggedInUser = loginUser;
+        }
         
-        if (DatabaseUtils.loggedInUser != null)
+        if (DatabaseUtils.loggedInUser != null && DatabaseUtils.loggedInUser.getUsername().equals(userName.getText()) && DatabaseUtils.loggedInUser.getPassword().equals(userPassword.getText()))
         {
             Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -93,12 +93,6 @@ public class MainWindowController {
         stage.show();
     }
     public void onExit(){
-        /**
-         * Saves all the database to local text files, then exits the application.
-         */
-        //User dev = new User("TestDev", "Password123", "test@dev.com", true);
-        //DatabaseUtils.userDatabase.Create(dev);
-        
         DatabaseUtils.userDatabase.Save();
         DatabaseUtils.itemDatabase.Save();
         DatabaseUtils.tagDatabase.Save();
