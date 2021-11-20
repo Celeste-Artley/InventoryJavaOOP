@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -32,6 +33,11 @@ public class ManageUsersController {
     private Label userPasswordLabel;
     @FXML
     private Label userRoleLabel;
+    @FXML
+    private TextField newUserEmail;
+    @FXML
+    private TextField newUserPassword;
+
     
     @FXML 
     private ChoiceBox newUserRole;
@@ -42,14 +48,19 @@ public class ManageUsersController {
     
     public void updateUserEmail(ActionEvent event) throws IOException{
         // Use newUserEmail.getText() and change the database file to match.
+        // Just updates email label, no connection to backend
+        userEmailLabel.setText(newUserEmail.getText());
     }
     
     public void updateUserPassword(ActionEvent event) throws IOException{
         // Use newUserPassword.getText() and change the database file to match.
+        // Just updates password label, no connection to backend
+        userPasswordLabel.setText(newUserPassword.getText());
     }
     
     public void updateUserRole(ActionEvent event) throws IOException{
-        
+        // Just updates role label, no connection to backend
+        userRoleLabel.setText(newUserRole.getValue().toString());
     }
     
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{

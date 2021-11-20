@@ -141,8 +141,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="newUserRole" layoutX="365.0" layoutY="340.0" prefHeight="45.0" prefWidth="150.0" />
-                  <Button layoutX="700.0" layoutY="350.0" mnemonicParsing="false" onAction="#updateUserRole" text="Confirm" />
+                  <ChoiceBox fx:id="newUserRole" layoutX="365.0" layoutY="330.0" prefHeight="45.0" prefWidth="150.0" />
+                  <Button layoutX="700.0" layoutY="340.0" mnemonicParsing="false" onAction="#updateUserRole" text="Confirm" />
                   <Button fx:id="close" layoutX="313.0" layoutY="523.0" mnemonicParsing="false" onAction="#changeSceneToMainWindow" prefHeight="39.0" prefWidth="102.0" text="Close">
                      <font>
                         <Font size="18.0" />
