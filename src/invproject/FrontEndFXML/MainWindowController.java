@@ -55,7 +55,6 @@ public class MainWindowController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    DatabaseUtils dbUtils = new DatabaseUtils();
     
     public void changeSceneToEditAccount(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("EditAccount.fxml"));
@@ -85,6 +84,6 @@ public class MainWindowController {
         stage.show();
     }
     public void onExit(){
-        dbUtils.DatabaseTest("greggIsTheBest");
+        DatabaseUtils.userDatabase.Save();
     }
 }

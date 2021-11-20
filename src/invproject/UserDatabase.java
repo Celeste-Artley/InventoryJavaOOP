@@ -20,7 +20,6 @@ public class UserDatabase implements IDatabase<String, User> {
     
     public UserDatabase()
     {
-        
         try
         {
             //System.out.println("attempting to load.");
@@ -45,13 +44,13 @@ public class UserDatabase implements IDatabase<String, User> {
     public User Read(String s)
     {
         //System.out.println("Atempting to get user: " + s + " from the database");
-        User val = null;
+        User val = new User("default","default","default");
         //System.out.println("the number of users in the database are: " + users.size());
         for (User u : users)
         {
            //System.out.println("in the users loop checking the user "+ u.getUsername() + " vs " + s);
             
-            if(u.getUsername() == s)
+            if(u.getUsername().equals(s))
             {
                 //System.out.println("I found a user in the database with the same name as: " + u);
                 val = u;
@@ -112,7 +111,7 @@ public class UserDatabase implements IDatabase<String, User> {
             FileWriter fwriter = new FileWriter("users.txt");
             for(User u : users)
             {
-                fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail());
+                fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail() + "\n");
             }
             fwriter.close();
         }
@@ -123,7 +122,7 @@ public class UserDatabase implements IDatabase<String, User> {
         
         
     }
-    private List<User> Load() throws FileNotFoundException
+    public List<User> Load() throws FileNotFoundException
     {
         List<User> returnUsers = new ArrayList<User>();
         File file = new File("users.txt");
