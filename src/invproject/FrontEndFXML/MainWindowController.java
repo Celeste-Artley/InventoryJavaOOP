@@ -67,7 +67,7 @@ public class MainWindowController {
     }
     
     public void changeSceneToManageUsers(ActionEvent event) throws IOException{    
-        if(DatabaseUtils.loggedInUser.getRole())
+        if(DatabaseUtils.loggedInUser.getAdminStatus())
         {
             Parent root = FXMLLoader.load(getClass().getResource("ManageUsers.fxml"));
             stage = (Stage)categoryName.getScene().getWindow();

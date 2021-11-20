@@ -6,26 +6,30 @@ package invproject;
 
 /**
  *
- * @author Celeste Artley
+ * @author Celeste Artley and Justin R. Fox
  */
 public class User {
     private String username = "";
     private String password = "";
     private String email = "";
-    private Boolean admin = false;
+    private String role = "";
+    private Boolean isAdmin = false;
     
-    public User(String username, String password, String email)
+    public User(String username)
     {
         this.username = username;
-        this.password = password;
-        this.email = email;
+        this.password = "ExamplePassword";
+        this.email = "Example@email.com";
+        this.role = "Read";
+        this.isAdmin = false;
     }
-    public User(String username, String password, String email, Boolean admin)
+    public User(String username, String password, String email, String role, Boolean isAdmin)
     {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.admin = admin;
+        this.role = role;
+        this.isAdmin = isAdmin;
     }
     public String getUsername()
     {
@@ -51,13 +55,21 @@ public class User {
     {
         this.email = email;
     }
-    public Boolean getRole()
+    public String getRole()
     {
-        return admin;
+        return role;
     }
-    public void setRole(Boolean admin)
+    public void setRole(String role)
     {
-        this.admin = admin;
+        this.role = role;
+    }
+    public Boolean getAdminStatus()
+    {
+        return isAdmin;
+    }
+    public void setAdminStatus(Boolean isAdmin)
+    {
+        this.isAdmin = isAdmin;
     }
     
     

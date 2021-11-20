@@ -43,7 +43,7 @@ public class CreateAccountController {
         
         if(usernameCheck && passwordChcek && emailCheck)
         {
-            User u = new User(userName.getText(),userPassword.getText(),userEmail.getText(),false);
+            User u = new User(userName.getText(),userPassword.getText(),userEmail.getText(),"Read", false);
             DatabaseUtils.userDatabase.Create(u);
             DatabaseUtils.userDatabase.Save();
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
