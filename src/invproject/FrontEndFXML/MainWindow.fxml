@@ -142,8 +142,8 @@
                                       </items>
                                     </ContextMenu>
                                  </contextMenu></TreeView>
-                              <Button layoutX="194.0" layoutY="47.0" mnemonicParsing="false" text="Add" />
-                              <TextField layoutY="47.0" prefHeight="25.0" prefWidth="191.0" />
+                              <Button layoutX="194.0" layoutY="47.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
+                              <TextField fx:id="newCategory" layoutY="47.0" prefHeight="25.0" prefWidth="191.0" />
                            </children>
                         </AnchorPane>
                     </items>

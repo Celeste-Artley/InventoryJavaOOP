@@ -60,8 +60,8 @@
                         <Color red="0.624" green="0.624" blue="0.624" fx:id="x6" />
                      </textFill></Label>
                   <ListView fx:id="userList" layoutY="55.0" prefHeight="475.0" prefWidth="262.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0" />
-                  <Button layoutX="216.0" layoutY="543.0" mnemonicParsing="false" text="Add" />
-                  <TextField layoutY="543.0" prefHeight="25.0" prefWidth="205.0" promptText="Add User" />
+                  <Button layoutX="216.0" layoutY="543.0" mnemonicParsing="false" onAction="#addUser" text="Add" />
+                  <TextField fx:id="newUser" layoutY="543.0" prefHeight="25.0" prefWidth="205.0" promptText="Add User" />
           </children>
         </AnchorPane>
         <AnchorPane prefWidth="788.0">
@@ -143,12 +143,12 @@
                   </Label>
                   <ChoiceBox fx:id="newUserRole" layoutX="365.0" layoutY="330.0" prefHeight="45.0" prefWidth="150.0" />
                   <Button layoutX="700.0" layoutY="340.0" mnemonicParsing="false" onAction="#updateUserRole" text="Confirm" />
-                  <Button fx:id="close" layoutX="313.0" layoutY="523.0" mnemonicParsing="false" onAction="#changeSceneToMainWindow" prefHeight="39.0" prefWidth="102.0" text="Close">
+                  <Button layoutX="313.0" layoutY="523.0" mnemonicParsing="false" onAction="#changeSceneToMainWindow" prefHeight="39.0" prefWidth="102.0" text="Close">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button layoutX="687.0" layoutY="537.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Remove User" textFill="WHITE">
+                  <Button layoutX="687.0" layoutY="537.0" mnemonicParsing="false" onAction="#removeUser" style="-fx-background-color: red;" text="Remove User" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

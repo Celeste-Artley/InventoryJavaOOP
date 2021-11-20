@@ -37,6 +37,8 @@ public class ManageUsersController {
     private TextField newUserEmail;
     @FXML
     private TextField newUserPassword;
+    @FXML
+    private TextField newUser;
 
     
     @FXML 
@@ -61,6 +63,14 @@ public class ManageUsersController {
     public void updateUserRole(ActionEvent event) throws IOException{
         // Just updates role label, no connection to backend
         userRoleLabel.setText(newUserRole.getValue().toString());
+    }
+    
+    public void addUser(){
+    
+    }
+    
+    public void removeUser(){
+        
     }
     
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{

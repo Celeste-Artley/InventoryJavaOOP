@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import invproject.FrontEndFXML.DatabaseUtils;
 import javafx.application.Platform;
+import javafx.scene.control.TextField;
 
 
 /**
@@ -48,6 +49,9 @@ public class MainWindowController {
     @FXML
     private Color x4;
     
+    @FXML
+    private TextField newCategory;
+    
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -62,12 +66,15 @@ public class MainWindowController {
     }
     
     public void changeSceneToManageUsers(ActionEvent event) throws IOException{
-        
         Parent root = FXMLLoader.load(getClass().getResource("ManageUsers.fxml"));
         stage = (Stage)categoryName.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void addCategory(ActionEvent event) throws IOException{
+        
     }
     
     public void logOut(ActionEvent event) throws IOException{
