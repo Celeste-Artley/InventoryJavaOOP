@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author sethm and Justin R. Fox
+ * @author sethm
  */
 public class ManageUsersController {
     private Stage stage;
@@ -46,39 +46,31 @@ public class ManageUsersController {
     
     public void initialize() {
         newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Administrator");
-        userNameLabel.setText(DatabaseUtils.loggedInUser.getUsername());
-        userEmailLabel.setText(DatabaseUtils.loggedInUser.getEmail());
-        userPasswordLabel.setText(DatabaseUtils.loggedInUser.getPassword());
-        userRoleLabel.setText(DatabaseUtils.loggedInUser.getRole());
     }
     
     public void updateUserEmail(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdateEmail(userNameLabel.getText(), newUserEmail.getText());
-        DatabaseUtils.userDatabase.Save();
+        // Use newUserEmail.getText() and change the database file to match.
+        // Just updates email label, no connection to backend
         userEmailLabel.setText(newUserEmail.getText());
     }
     
     public void updateUserPassword(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdatePassword(userNameLabel.getText(), newUserPassword.getText());
-        DatabaseUtils.userDatabase.Save();
+        // Use newUserPassword.getText() and change the database file to match.
+        // Just updates password label, no connection to backend
         userPasswordLabel.setText(newUserPassword.getText());
     }
     
     public void updateUserRole(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdateRole(userNameLabel.getText(), newUserRole.getValue().toString());
-        DatabaseUtils.userDatabase.Save();
+        // Just updates role label, no connection to backend
         userRoleLabel.setText(newUserRole.getValue().toString());
     }
     
     public void addUser(){
-        invproject.User user = new invproject.User(newUser.getText());
-        DatabaseUtils.userDatabase.Create(user);
-        DatabaseUtils.userDatabase.Save();
+    
     }
     
     public void removeUser(){
-        DatabaseUtils.userDatabase.Delete(userNameLabel.getText());
-        DatabaseUtils.userDatabase.Save();
+        
     }
     
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{

@@ -13,7 +13,7 @@ import java.io.*;
 
 /**
  *
- * @author Celeste Artley and Justin R. Fox
+ * @author Celeste Artley
  */
 public class UserDatabase implements IDatabase<String, User> {
     private List<User> users = new ArrayList<>();
@@ -44,7 +44,7 @@ public class UserDatabase implements IDatabase<String, User> {
     public User Read(String s)
     {
         //System.out.println("Atempting to get user: " + s + " from the database");
-        User val = new User("default","default","default", "Read", false);
+        User val = new User("default","default","default");
         //System.out.println("the number of users in the database are: " + users.size());
         for (User u : users)
         {
@@ -75,24 +75,6 @@ public class UserDatabase implements IDatabase<String, User> {
             if(u.getUsername() == s)
             {
                u.setEmail(e);
-            }
-        }
-    }
-    public void UpdateRole(String s, String r)
-    {
-        for (User u : users)
-        {
-            if(u.getUsername() == s)
-            {
-               u.setRole(r);
-               
-               if (r == "Administrator")
-               {
-                   u.setAdminStatus(true);
-               }
-               else {
-                   u.setAdminStatus(false);
-               }
             }
         }
     }
@@ -129,7 +111,7 @@ public class UserDatabase implements IDatabase<String, User> {
             FileWriter fwriter = new FileWriter("users.txt");
             for(User u : users)
             {
-                fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail() + " " + u.getRole() + " " + u.getAdminStatus().toString() + "\n");
+                fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail() + " " + u.getRole().toString() + "\n");
             }
             fwriter.close();
         }
@@ -153,9 +135,8 @@ public class UserDatabase implements IDatabase<String, User> {
                String username = scanner.next();
                String password = scanner.next();
                String email = scanner.next();
-               String role = scanner.next();
-               Boolean isAdmin = Boolean.parseBoolean(scanner.next());
-               User u = new User(username, password, email, role, isAdmin);
+               Boolean role = Boolean.parseBoolean(scanner.next());
+               User u = new User(username, password, email, role);
                returnUsers.add(u);
            }
            scanner.close();

@@ -1,3 +1,2 @@
-Admin 123 EmailEmail@Email.com Administrator true
-GeorgeMcFly password123 mymail@HillValley.com Read false
-bobsmith ExamplePassword Example@email.com Read false
+admin 123 admin@dev.com true
+test 123 test@dev.com false

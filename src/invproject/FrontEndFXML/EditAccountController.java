@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author sethm and Justin R. Fox
+ * @author sethm
  */
 public class EditAccountController {
     private Stage stage;
@@ -37,22 +37,15 @@ public class EditAccountController {
     @FXML
     private TextField newUserPassword;
     
-    public void initialize() {
-        userNameLabel.setText(DatabaseUtils.loggedInUser.getUsername());
-        userEmailLabel.setText(DatabaseUtils.loggedInUser.getEmail());
-        userPasswordLabel.setText(DatabaseUtils.loggedInUser.getPassword());
-        userRoleLabel.setText(DatabaseUtils.loggedInUser.getRole());
-    }
-    
     public void updateUserEmail(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdateEmail(DatabaseUtils.loggedInUser.getUsername(), newUserEmail.getText());
-        DatabaseUtils.userDatabase.Save();
+        // Use newUserEmail.getText() and change the database file to match.
+        // Just updates email label, no connection to backend
         userEmailLabel.setText(newUserEmail.getText());
     }
     
     public void updateUserPassword(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdatePassword(DatabaseUtils.loggedInUser.getUsername(), newUserPassword.getText());
-        DatabaseUtils.userDatabase.Save();
+        // Use newUserPassword.getText() and change the database file to match.
+        // Just updates password label, no connection to backend
         userPasswordLabel.setText(newUserPassword.getText());
     }
     
