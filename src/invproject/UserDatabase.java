@@ -18,7 +18,7 @@ import java.io.*;
 public class UserDatabase implements IDatabase<String, User> {
     private List<User> users = new ArrayList<>();
     
-    void UserDatabase()
+    public UserDatabase()
     {
         try
         {

@@ -17,7 +17,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     private List<Category> categories = new ArrayList<>();
     private final String saveLocation = "Categories.txt";
     
-    void CategoryDatabase()
+    public CategoryDatabase()
     {
         try
         {
