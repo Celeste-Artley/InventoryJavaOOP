@@ -77,7 +77,7 @@ public class MainWindowController {
         }
         else
         {
-            System.out.println("You are not an admin. please log into an anmin account");
+            System.out.println("You are not an admin.  Please log into an admin account.");
         }
     }
     
