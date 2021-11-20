@@ -26,5 +26,6 @@ public class DatabaseUtils {
     public static CategoryDatabase categoryDatabase = new CategoryDatabase();
    
     
+    public static User loggedInUser;
    
 }
