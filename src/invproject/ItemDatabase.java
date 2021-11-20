@@ -90,7 +90,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
     }
 
     @Override
-    public void Update(String value) {
+    public void Update(String itemName, Item value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

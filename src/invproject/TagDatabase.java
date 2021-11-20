@@ -39,13 +39,13 @@ public class TagDatabase implements IDatabase<String, Tag> {
         }
         return val;
     }
-    public void Update(String s)
+    public void Update(String tagName, Tag value)
     {
         for (Tag t : tags)
         {
-            if(t.getName() == s)
+            if(t.getName() == tagName)
             {
-               t.setName(s);    // This doesn't actually update anything; it just saves the exact same name it already had.
+               t.setName(value.getName());    // This doesn't actually update anything; it just saves the exact same name it already had.
             }
         }
     }

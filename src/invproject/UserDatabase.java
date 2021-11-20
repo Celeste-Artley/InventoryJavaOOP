@@ -16,9 +16,9 @@ import java.io.*;
  * @author Celeste Artley
  */
 public class UserDatabase implements IDatabase<String, User> {
-    private List<User> users = new ArrayList<User>();
+    private List<User> users = new ArrayList<>();
     
-    public UserDatabase()
+    void UserDatabase()
     {
         try
         {
@@ -32,7 +32,7 @@ public class UserDatabase implements IDatabase<String, User> {
            System.out.print(e);
         }
     }
-    
+ 
     public List<User> getUsers()
     {
         return users;
@@ -144,8 +144,7 @@ public class UserDatabase implements IDatabase<String, User> {
         return returnUsers;
     }
 
-    @Override
-    public void Update(String value) {
+    public void Update(String username, User value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

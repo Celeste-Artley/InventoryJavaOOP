@@ -25,7 +25,6 @@ public class DatabaseUtils {
     public static UserDatabase userDatabase = new UserDatabase();
     public static CategoryDatabase categoryDatabase = new CategoryDatabase();
    
-    
     public static User loggedInUser;
    
 }
