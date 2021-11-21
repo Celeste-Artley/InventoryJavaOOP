@@ -1,4 +1,4 @@
-#  **ToDo Items Inventory Project**
+#  **Items Inventory Project**
 
 Java ToDo Items Inventory Project for Object-Oriented Programming
 
