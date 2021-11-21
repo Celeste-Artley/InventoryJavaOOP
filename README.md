@@ -44,4 +44,3 @@ Java ToDo Items Inventory Project for Object-Oriented Programming
 
 - Non existent functionality in controllers
 - Missing enumerated roles
->>>>>>> Dev
