@@ -13,7 +13,7 @@ public class Item {
     private List<Tag> tags = new ArrayList<Tag>();
     private String name;
     private String categoryName;
-    private Category category = new Category(categoryName);
+    private Category category;
     private POrder orderInfo = new POrder();
     private Integer quantity;
     private String lDescription, sDescription;
@@ -22,18 +22,21 @@ public class Item {
     {
         this.name = Name;
         this.categoryName = CategoryName;
+        this.category = new Category(CategoryName);
         this.quantity = Quantity;
         this.lDescription = lDesc;
         this.sDescription = sDesc;
     }
-    public Item(String Name, String CategoryName, Integer Quantity, String lDesc, String sDesc, POrder order)
+    public Item(String Name, String CategoryName, Integer Quantity, String lDesc, String sDesc, POrder order, List<Tag> tags)
     {
         this.name = Name;
         this.categoryName = CategoryName;
+        this.category = new Category(CategoryName);
         this.quantity = Quantity;
         this.lDescription = lDesc;
         this.sDescription = sDesc;
         this.orderInfo = order;
+        this.tags = tags;
     }
     //Getters and Setters
     public String getName() {

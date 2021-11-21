@@ -21,6 +21,11 @@ public class POrder {
    {
        dateCreated = dtf.format(now);
    }
+   public POrder(Integer orderedAmount)
+   {
+       amountOrdered = orderedAmount;
+       dateCreated = dtf.format(now);
+   }
    //Start of getters and setters
    public String getLastUpdated()
     {

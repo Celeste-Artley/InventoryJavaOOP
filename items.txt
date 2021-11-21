@@ -1,0 +1,1 @@
+Shirt | Clothes | 20 | a shirt that looks pretty | a shirt | 5 | null ^ Red Blue Summer  * 

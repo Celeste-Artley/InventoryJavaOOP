@@ -21,6 +21,14 @@ public class ItemDatabase implements IDatabase<String, Item> {
     public ItemDatabase()
     {
         items = Load();
+        POrder order = new POrder(5);
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag("Red"));
+        tags.add(new Tag("Blue"));
+        tags.add(new Tag("Summer"));
+        Item i = new Item("Shirt", "Clothes", 20, "a shirt that looks pretty", "a shirt", order,tags);
+        items.add(i);
+        Save();
     }
     
     public List<Item> getItems()
@@ -187,12 +195,20 @@ public class ItemDatabase implements IDatabase<String, Item> {
             FileWriter fwriter = new FileWriter(saveLocation);
             for(Item i : items)
             {
-                String orderRequrements = i.getOrderInfo().getammountOrdered() 
+                String tagRequirements = "";
+                
+                for(Tag t: i.getTags())
+                {
+                    tagRequirements = tagRequirements + t.getName() + " ";
+                }
+                
+                String orderRequrements = i.getOrderInfo().getammountOrdered() +  " | " 
                         + i.getOrderInfo().getLastUpdated();
                 
-                String itemRequrements = i.getName() + " | " + i.getCategory() 
+                String itemRequrements = i.getName() + " | " + i.getCategory().getName()
                         + " | " + i.getQuantity()+ " | " +i.getlDescription() 
-                        + " | " +i.getsDescription() + " | " + orderRequrements;
+                        + " | " +i.getsDescription() + " | " + orderRequrements 
+                         + " ^ " + tagRequirements + " * ";
                 
                 fwriter.write(itemRequrements+ "\n");
             }
