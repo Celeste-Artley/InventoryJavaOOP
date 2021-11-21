@@ -101,7 +101,7 @@ public class UserDatabase implements IDatabase<String, User> {
     {
         for (User u : users)
         {
-            if(u.getUsername() == s)
+            if(u.getUsername().equals(s))
             {
                u.setPassword(p);
             }
@@ -135,7 +135,7 @@ public class UserDatabase implements IDatabase<String, User> {
     {
         for (User u : users)
         {
-            if(u.getUsername() == s)
+            if(u.getUsername().equals(s))
             {
                users.remove(u);
             }

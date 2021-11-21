@@ -4,6 +4,9 @@
  */
 package invproject;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +48,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
         Item val = null;
         for (Item i : items)
         {
-            if(i.getName() == s)
+            if(i.getName().equals(s))
             {
                 val = i;
             }
@@ -62,7 +65,17 @@ public class ItemDatabase implements IDatabase<String, Item> {
      */
     @Override
     public void Update(String itemName, Item value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Item replace = Read(itemName);
+        if(replace != null)
+        {
+            items.remove(replace);
+            items.add(value);
+        }
+        else
+        {
+            System.out.println("Could not find passed item by name.");
+        }
     }
     
     /**
@@ -71,17 +84,16 @@ public class ItemDatabase implements IDatabase<String, Item> {
      * Category with (itemName) then find the Item's Category with (s) and 
      * replaces their Category with (c)
      * @param itemName
-     * @param s
-     * @param c 
+     * @param newCategory
      */
-    public void UpdateCategory(String itemName, String s)
+    public void UpdateCategory(String itemName, String newCategory)
     {
         for (Item i : items)
         {
-            if(i.getName() == null ? s == null : i.getName().equals(itemName))
+            if(i.getName().equals(itemName))
             {
-               Category newCat = new Category(s);
-               i.setCategory(newCat);
+                Category newCat = new Category(newCategory);
+                i.setCategory(newCat);
             }
         }
     }
@@ -95,12 +107,19 @@ public class ItemDatabase implements IDatabase<String, Item> {
      */
     public void UpdateLongDesc(String itemName, String s)
     {
-        for (Item i : items)
+        if(s.length() < 250)
         {
-            if(i.getName().equals(itemName))
+            for (Item i : items)
             {
-               i.setlDescription(s);
+                if(i.getName().equals(itemName))
+                {
+                   i.setlDescription(s);
+                }
             }
+        }
+        else
+        {
+            System.out.println("You cannot update Long Descriptions longer than 250 characters.");
         }
     }
     
@@ -113,12 +132,19 @@ public class ItemDatabase implements IDatabase<String, Item> {
      */
     public void UpdateShortDesc(String itemName, String s)
     {
-        for (Item i : items)
+        if(s.length() < 30)
         {
-            if(i.getName().equals(itemName))
+            for (Item i : items)
             {
-               i.setsDescription(s);
+                if(i.getName().equals(itemName))
+                {
+                   i.setlDescription(s);
+                }
             }
+        }
+        else
+        {
+            System.out.println("You cannot update Long Descriptions longer than 30 characters.");
         }
     }
     
@@ -132,7 +158,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
     {
         for (Item i : items)
         {
-            if(i.getName() == s)
+            if(i.getName().equals(s))
             {
                items.remove(i);
             }
@@ -144,7 +170,38 @@ public class ItemDatabase implements IDatabase<String, Item> {
      */
     public void Save()
     {
-        
+        try
+        {
+            File file = new File(saveLocation);
+            if(!file.exists())
+            {
+                try
+                {
+                    file.createNewFile();
+                }
+                catch(IOException e)
+                {
+                    System.out.print(e);  
+                }
+            }
+            FileWriter fwriter = new FileWriter(saveLocation);
+            for(Item i : items)
+            {
+                String orderRequrements = i.getOrderInfo().getammountOrdered() 
+                        + i.getOrderInfo().getLastUpdated();
+                
+                String itemRequrements = i.getName() + " | " + i.getCategory() 
+                        + " | " + i.getQuantity()+ " | " +i.getlDescription() 
+                        + " | " +i.getsDescription() + " | " + orderRequrements;
+                
+                fwriter.write(itemRequrements+ "\n");
+            }
+            fwriter.close();
+        }
+        catch(IOException e)
+        {
+            System.out.print(e);
+        }
     }
     
     /**

@@ -26,6 +26,15 @@ public class Item {
         this.lDescription = lDesc;
         this.sDescription = sDesc;
     }
+    public Item(String Name, String CategoryName, Integer Quantity, String lDesc, String sDesc, POrder order)
+    {
+        this.name = Name;
+        this.categoryName = CategoryName;
+        this.quantity = Quantity;
+        this.lDescription = lDesc;
+        this.sDescription = sDesc;
+        this.orderInfo = order;
+    }
     //Getters and Setters
     public String getName() {
         return name;
