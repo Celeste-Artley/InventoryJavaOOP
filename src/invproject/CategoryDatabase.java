@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
- * This is meant to be a Static variable database of all Category objects. 
+ * This is a Static variable database of all Category objects. 
  * @author Celeste Artley
  */
 public class CategoryDatabase implements IDatabase<String, Category> {
@@ -64,8 +64,9 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     }
 
     /**
-     * Takes in a Category and a String to find another Category looks up the 
-     * String in the database and replaces the Category with the one provided.
+     * Takes in a Category and a String to find and replace with the new 
+     * Category (value). Uses the String (categoryName) to lookup the proper Category to 
+     * replace.
      * @param categoryName
      * @param value
      */
@@ -130,7 +131,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     }
     
     /**
-     * Loads the database from a text document
+     * Pulls the data from the saveLocation and puts it in the database
      * @return
      * @throws FileNotFoundException 
      */

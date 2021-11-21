@@ -12,20 +12,18 @@ import java.io.*;
 
 
 /**
- *
+ * This is a Static variable database of all User objects. 
  * @author Celeste Artley
  */
 public class UserDatabase implements IDatabase<String, User> {
     private List<User> users = new ArrayList<>();
+    private final String saveLocation = "users.txt";
     
     public UserDatabase()
     {
         try
         {
-            //System.out.println("attempting to load.");
-            //System.out.println(users.size());
             users = Load();
-            //System.out.println(users.size());
         }
         catch(Exception e)
         {
@@ -37,10 +35,23 @@ public class UserDatabase implements IDatabase<String, User> {
     {
         return users;
     }
+    
+    /**
+     *Takes a User u as a argument and adds it to the Category database.
+     * @param u
+     */
+    @Override
     public void Create(User u)
     {
         users.add(u);
     }
+    
+    /**
+     * Reads from the database and looks for a User by String s (name)
+     * @param s
+     * @return
+     */
+    @Override
     public User Read(String s)
     {
         //System.out.println("Atempting to get user: " + s + " from the database");
@@ -58,6 +69,34 @@ public class UserDatabase implements IDatabase<String, User> {
         }
         return val;
     }
+    
+    /**
+     * Takes in a User and a String to find and replace with the new 
+     * User (value). Uses the String (username) to lookup the proper User to 
+     * replace.
+     * @param username
+     * @param value
+     */
+    @Override
+    public void Update(String username, User value) {
+        User replace = Read(username);
+        if(replace != null)
+        {
+            users.remove(replace);
+            users.add(value);
+        }
+        else
+        {
+            System.out.println("Could not find passed username.");
+        }
+    }
+    
+    /**
+     * Updates a password by taking in a Username (s), and a Password (p) 
+     * then find the User (s) and replaces their password with (p)
+     * @param s
+     * @param p 
+     */
     public void UpdatePassword(String s, String p)
     {
         for (User u : users)
@@ -68,6 +107,13 @@ public class UserDatabase implements IDatabase<String, User> {
             }
         }
     }
+    
+    /**
+     * Updates a Email by taking in a Username (s), and a Email (p) 
+     * then find the User (s) and replaces their password with (p)
+     * @param s
+     * @param e 
+     */
     public void UpdateEmail(String s, String e)
     {
         for (User u : users)
@@ -78,6 +124,13 @@ public class UserDatabase implements IDatabase<String, User> {
             }
         }
     }
+    
+    /**
+     * Takes in a String to lookup from the database a User then removes it
+     * from the database.
+     * @param s
+     */
+    @Override
     public void Delete(String s)
     {
         for (User u : users)
@@ -88,13 +141,17 @@ public class UserDatabase implements IDatabase<String, User> {
             }
         }
     }
+    
+    /**
+     * Saves the database to a text document 
+     */
     public void Save()
     {
         //try's to write with all the user data
         try
         {
             //Checks to see if the file exist
-            File file = new File("users.txt");
+            File file = new File(saveLocation);
             if(!file.exists())
             {
                 //If the file does not exist trys to create a new one
@@ -108,7 +165,7 @@ public class UserDatabase implements IDatabase<String, User> {
                 }
             }
             //writes for each user saved data into users.txt
-            FileWriter fwriter = new FileWriter("users.txt");
+            FileWriter fwriter = new FileWriter(saveLocation);
             for(User u : users)
             {
                 fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail() + " " + u.getRole().toString() + "\n");
@@ -122,29 +179,31 @@ public class UserDatabase implements IDatabase<String, User> {
         
         
     }
+    
+    /**
+     * pulls the data from the saveLocation and puts it in the database
+     * @return
+     * @throws FileNotFoundException 
+     */
     public List<User> Load() throws FileNotFoundException
     {
-        List<User> returnUsers = new ArrayList<User>();
-        File file = new File("users.txt");
+        List<User> returnUsers = new ArrayList<>();
+        File file = new File(saveLocation);
         if(file.canRead())
         {
-           //System.out.println("Can read the file.");
-           Scanner scanner = new Scanner(file);
-           while(scanner.hasNext())
-           {
-               String username = scanner.next();
-               String password = scanner.next();
-               String email = scanner.next();
-               Boolean role = Boolean.parseBoolean(scanner.next());
-               User u = new User(username, password, email, role);
-               returnUsers.add(u);
-           }
-           scanner.close();
+            try (Scanner scanner = new Scanner(file)) {
+                while(scanner.hasNext())
+                {
+                    String username = scanner.next();
+                    String password = scanner.next();
+                    String email = scanner.next();
+                    Boolean role = Boolean.parseBoolean(scanner.next());
+                    User u = new User(username, password, email, role);
+                    returnUsers.add(u);
+                }}
         }
         return returnUsers;
     }
 
-    public void Update(String username, User value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
