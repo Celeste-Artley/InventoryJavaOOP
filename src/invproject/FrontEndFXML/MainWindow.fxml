@@ -105,8 +105,8 @@
                      </graphic>
                   </MenuItem>
                   <MenuItem id="accountRole" disable="true" mnemonicParsing="false" text="Administrator" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#changeSceneToManageUsers" text="Manage Users" />
+                  <SeparatorMenuItem fx:id="manageUsersSeparator" mnemonicParsing="false" />
+                  <MenuItem fx:id="manageUsers" mnemonicParsing="false" onAction="#changeSceneToManageUsers" text="Manage Users" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log Out" />
           </items>
