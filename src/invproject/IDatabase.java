@@ -5,7 +5,7 @@
 package invproject;
 
 /**
- *
+ * an interface for a CRUD based database.
  * @author Celeste Artley
  * @param <T>
  * @param <E>

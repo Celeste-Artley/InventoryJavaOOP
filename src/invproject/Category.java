@@ -5,7 +5,7 @@
 package invproject;
 
 /**
- *
+ *contains info about a Category
  * @author Celeste Artley
  */
 public class Category {
@@ -15,10 +15,8 @@ public class Category {
     {
         this.name = name;
     }
-
-    Category(Category c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    //Begining of Getters / Setters functions
     public String getName()
     {
         return name;
@@ -27,5 +25,5 @@ public class Category {
     {
         this.name = name;
     }
-    
+    //End of Getters / Setters functions
 }

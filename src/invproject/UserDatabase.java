@@ -203,7 +203,5 @@ public class UserDatabase implements IDatabase<String, User> {
                 }}
         }
         return returnUsers;
-    }
-
-    
+    }  
 }

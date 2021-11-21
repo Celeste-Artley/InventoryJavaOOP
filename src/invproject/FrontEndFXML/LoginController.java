@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- *
+ * A controller for the Login JavaFX FXML file.
  * @author sethm
  */
 public class LoginController {
@@ -32,8 +32,14 @@ public class LoginController {
     private Scene scene;
     private Parent root;
     
-    
-    
+    /**
+     * function for the login button to check that there is currently no active 
+     * user, then pulls the info from the username and password fields. Checks 
+     * those against the database. verifies correctness, logs in and changes 
+     * the window to the min window.
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{
         User loginUser = DatabaseUtils.userDatabase.Read(userName.getText());
         if(loginUser != null)
@@ -59,6 +65,11 @@ public class LoginController {
         
     }
     
+    /**
+     * Swaps the current Active Window to Create Account
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToCreateAccount(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

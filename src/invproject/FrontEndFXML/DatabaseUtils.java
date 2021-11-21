@@ -13,7 +13,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 /**
- *
+ * Provides a location for all the Static Databases.
  * @author Celeste Artley
  */
 import java.util.Scanner;

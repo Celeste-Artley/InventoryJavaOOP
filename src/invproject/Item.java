@@ -5,7 +5,7 @@
 package invproject;
 import java.util.*;  
 /**
- *
+ * Holds all the information about each Item
  * @author Celeste Artley
  */
 public class Item {

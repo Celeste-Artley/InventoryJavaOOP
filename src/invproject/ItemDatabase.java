@@ -74,13 +74,13 @@ public class ItemDatabase implements IDatabase<String, Item> {
      * @param s
      * @param c 
      */
-    public void UpdateCategory(String itemName, String s, Category c)
+    public void UpdateCategory(String itemName, String s)
     {
         for (Item i : items)
         {
-            if(i.getName() == null ? s == null : i.getName().equals(s))
+            if(i.getName() == null ? s == null : i.getName().equals(itemName))
             {
-               Category newCat = new Category(c);
+               Category newCat = new Category(s);
                i.setCategory(newCat);
             }
         }

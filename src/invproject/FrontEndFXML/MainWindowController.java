@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 
 
 /**
- *
+ * A controller for the Main Window JavaFX FXML file.
  * @author sethm
  */
 public class MainWindowController {
@@ -57,6 +57,11 @@ public class MainWindowController {
     private Scene scene;
     private Parent root;
     
+    /**
+     * Changes the active window to the Edit Account page.
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToEditAccount(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("EditAccount.fxml"));
         stage = (Stage)categoryName.getScene().getWindow();
@@ -66,6 +71,11 @@ public class MainWindowController {
         stage.show();
     }
     
+    /**
+     * Changes the active window to the Manage Users page
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToManageUsers(ActionEvent event) throws IOException{    
         if(DatabaseUtils.loggedInUser.getRole())
         {
@@ -81,17 +91,33 @@ public class MainWindowController {
         }
     }
     
+    /**
+     * Adds a Category to the database of categories and reloads the categories 
+     * list
+     * @param event
+     * @throws IOException 
+     */
     public void addCategory(ActionEvent event) throws IOException{
         
     }
     
+    /**
+     * Returns to the login page as well as setting the active user to null
+     * @param event
+     * @throws IOException 
+     */
     public void logOut(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         stage = (Stage)categoryName.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        DatabaseUtils.loggedInUser = null;
         stage.show();
     }
+    
+    /**
+     * Exits the application and saves all the databases.
+     */
     public void onExit(){
         DatabaseUtils.userDatabase.Save();
         DatabaseUtils.itemDatabase.Save();
