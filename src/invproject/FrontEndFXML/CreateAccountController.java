@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- *
+ * A controller for the Create Account JavaFX FXML file.
  * @author sethm
  */
 public class CreateAccountController {
@@ -36,6 +36,12 @@ public class CreateAccountController {
     private Scene scene;
     private Parent root;
     
+    /**
+     * Checks to make sure that the username password and email are correct then
+     * creates it in the database and swaps to Login window.
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToLoginWindow(ActionEvent event) throws IOException{
         Boolean usernameCheck = this.checkUserName();
         Boolean passwordChcek = this.checkPassword();
@@ -54,6 +60,11 @@ public class CreateAccountController {
         }
     }
     
+    /**
+     * Changes the active scene to the Login window without creating an account
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToLogin(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -61,6 +72,12 @@ public class CreateAccountController {
         stage.setScene(scene);
         stage.show();
     }
+    
+    /**
+     * This is a utility function that checks to make sure that the Username 
+     * meets the criteria for creation
+     * @return 
+     */
     private Boolean checkUserName()
     {
         //checking the user's created account for a proper username. one that is longer than 9 chars and shorter than 60. and that there is not already a user with that name.
@@ -98,6 +115,13 @@ public class CreateAccountController {
             return false;
         }
     }
+    
+    /**
+     * This is a utility function that checks to make sure that the Password 
+     * meets the criteria for creation
+     * @return 
+     * @return 
+     */
     private Boolean checkPassword()
     {
         //checking the user's created account for a proper Password. one that is longer than 9 chars and shorter than 60.
@@ -120,9 +144,15 @@ public class CreateAccountController {
             return false;
         }
     }
+    
+    /**
+     * This is a utility function that checks to make sure that the Email 
+     * meets the criteria for creation
+     * @return 
+     */
     private Boolean checkEmail()
     {
-        //checking the user's created account for a proper email. one that contains the @ symbol and . and is longer than 5 chars.
+        //checking the user's created account for a proper email. one that contains the @ symbol and . and is followed by non special characters.
         Pattern p = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
         Matcher m = p.matcher(userEmail.getText());
         return m.find();

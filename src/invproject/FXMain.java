@@ -14,7 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
 /**
- *
+ * The main Class that starts the program
  * @author Celeste Artley
  */
 public class FXMain extends Application {
@@ -29,6 +29,7 @@ public class FXMain extends Application {
     
 
     /**
+     * main function that initiates the program.
      * @param args the command line arguments
      */
     public static void main(String[] args) {

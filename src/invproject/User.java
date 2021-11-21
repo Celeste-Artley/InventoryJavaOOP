@@ -5,7 +5,7 @@
 package invproject;
 
 /**
- *
+ * A class that provides a end user privileges and information to be displayed.
  * @author Celeste Artley
  */
 public class User {
@@ -14,12 +14,25 @@ public class User {
     private String email = "";
     private Boolean admin = false;
     
+    /**
+     * A constructor meant to create a user that has no admin privileges
+     * @param username
+     * @param password
+     * @param email 
+     */
     public User(String username, String password, String email)
     {
         this.username = username;
         this.password = password;
         this.email = email;
     }
+    /**
+     * A constructor meant to create a user that has admin privileges
+     * @param username
+     * @param password
+     * @param email
+     * @param admin 
+     */
     public User(String username, String password, String email, Boolean admin)
     {
         this.username = username;
@@ -27,6 +40,8 @@ public class User {
         this.email = email;
         this.admin = admin;
     }
+    
+    //Begining of Getters / Setters functions
     public String getUsername()
     {
         return username;
@@ -59,6 +74,5 @@ public class User {
     {
         this.admin = admin;
     }
-    
-    
+    //End of Getters / Setters functions
 }

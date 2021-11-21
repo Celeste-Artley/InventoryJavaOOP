@@ -6,7 +6,7 @@ package invproject;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;   
 /**
- *
+ * Holds the items information about purchasing and ordering.
  * @author Celeste Artley
  */
 public class POrder {
@@ -21,14 +21,14 @@ public class POrder {
    {
        dateCreated = dtf.format(now);
    }
-   
+   //Start of getters and setters
    public String getLastUpdated()
     {
         return lastUpdated;
     }
-   public Integer ammountOnOrder()
+   public Integer getammountOrdered()
    {
        return amountOrdered;
    }
-   
+   //End of getters and setters
 }

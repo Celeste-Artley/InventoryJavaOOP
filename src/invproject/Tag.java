@@ -5,7 +5,7 @@
 package invproject;
 
 /**
- *
+ * Contains information about a Tag
  * @author Celeste Artley
  */
 public class Tag {
@@ -14,6 +14,7 @@ public class Tag {
     {
         this.name = name;
     }
+    //Begining of Getters / Setters functions
     public String getName()
     {
         return name;
@@ -22,5 +23,5 @@ public class Tag {
     {
         this.name = name;
     }
-    
+    //End of Getters / Setters functions
 }

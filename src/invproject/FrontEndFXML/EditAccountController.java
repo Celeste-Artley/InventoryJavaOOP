@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- *
+ * A controller for the Edit Account JavaFX FXML file.
  * @author sethm
  */
 public class EditAccountController {
@@ -37,18 +37,31 @@ public class EditAccountController {
     @FXML
     private TextField newUserPassword;
     
+    /**
+     * Updates the active users email
+     * @param event
+     * @throws IOException 
+     */
     public void updateUserEmail(ActionEvent event) throws IOException{
         // Use newUserEmail.getText() and change the database file to match.
         // Just updates email label, no connection to backend
         userEmailLabel.setText(newUserEmail.getText());
     }
-    
+    /**
+     * Updates the active users password
+     * @param event
+     * @throws IOException 
+     */
     public void updateUserPassword(ActionEvent event) throws IOException{
         // Use newUserPassword.getText() and change the database file to match.
         // Just updates password label, no connection to backend
         userPasswordLabel.setText(newUserPassword.getText());
     }
-    
+    /**
+     * changes the active scene back to the main window.
+     * @param event
+     * @throws IOException 
+     */
     public void changeSceneToMainWindow(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
