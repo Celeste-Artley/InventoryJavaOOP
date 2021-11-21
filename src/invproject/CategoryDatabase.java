@@ -15,7 +15,7 @@ import java.io.*;
  */
 public class CategoryDatabase implements IDatabase<String, Category> {
     private List<Category> categories = new ArrayList<>();
-    private final String saveLocation = "Categories.txt";
+    private final String saveLocation = "categories.txt";
     
     public CategoryDatabase()
     {
@@ -99,7 +99,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     }
     
     /**
-     * Saves the database to a text document 
+     * Saves the database to a text document in the saveLocation.
      */
     public void Save()
     {

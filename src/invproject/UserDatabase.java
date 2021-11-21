@@ -37,7 +37,7 @@ public class UserDatabase implements IDatabase<String, User> {
     }
     
     /**
-     *Takes a User u as a argument and adds it to the Category database.
+     *Takes a User u as a argument and adds it to the Categories database.
      * @param u
      */
     @Override
@@ -143,7 +143,7 @@ public class UserDatabase implements IDatabase<String, User> {
     }
     
     /**
-     * Saves the database to a text document 
+     * Saves the database to a text document in the saveLocation.
      */
     public void Save()
     {

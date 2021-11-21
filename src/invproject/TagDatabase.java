@@ -10,13 +10,14 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
- *
+ * This is a Static variable database of all Tag objects.
  * @author Celeste Artley
  */
 public class TagDatabase implements IDatabase<String, Tag> {
-    private List<Tag> tags = new ArrayList<Tag>();
+    private List<Tag> tags = new ArrayList<>();
+    private final String saveLocation = "tags.txt";
     
-    void TagDatabase()
+    public TagDatabase()
     {
         tags = Load();
     }
@@ -24,10 +25,23 @@ public class TagDatabase implements IDatabase<String, Tag> {
     public List<Tag> getTags() {
         return tags;
     }
-    public void Create(Tag t)
+    
+    /**
+     * Takes a Tag u as a argument and adds it to the Tags database.
+     * @param t 
+     */
+    @Override
+    public void Create(Tag t)        
     {
         tags.add(t);
     }
+    
+    /**
+     * Reads from the database and looks for a Tag by String s (name)
+     * @param s
+     * @return
+     */
+    @Override
      public Tag Read(String s) {
         Tag val = null;
         for (Tag t : tags)
@@ -39,6 +53,15 @@ public class TagDatabase implements IDatabase<String, Tag> {
         }
         return val;
     }
+    
+     /**
+      * Takes in a Tag and a String to find and replace with the new 
+      * Tag (value). Uses the String (name) to lookup the proper Tag to 
+      * replace
+      * @param tagName
+      * @param value 
+      */
+    @Override
     public void Update(String tagName, Tag value)
     {
         for (Tag t : tags)
@@ -49,6 +72,13 @@ public class TagDatabase implements IDatabase<String, Tag> {
             }
         }
     }
+    
+    /**
+     * Takes in a String to lookup from the database a Tag then removes it
+     * from the database.
+     * @param s 
+     */
+    @Override
     public void Delete(String s)
     {
         for (Tag t : tags)
@@ -59,11 +89,15 @@ public class TagDatabase implements IDatabase<String, Tag> {
             }
         }
     }
+    
+    /**
+     * Saves the database to a text document in the saveLocation.
+     */
     public void Save()
     {
         try
         {
-            File file = new File("Tag.txt");
+            File file = new File(saveLocation);
             if(!file.exists())
             {
                try 
@@ -75,12 +109,12 @@ public class TagDatabase implements IDatabase<String, Tag> {
                    System.out.print(e);
                }
             }
-            FileWriter fwriter = new FileWriter("Tag.txt");
-            for(Tag t : tags)
-            {
-                fwriter.write(t.getName() + " ");
+            try (FileWriter fwriter = new FileWriter(saveLocation)) {
+                for(Tag t : tags)
+                {
+                    fwriter.write(t.getName() + " ");
+                }
             }
-            fwriter.close();
         }
         catch(IOException e)
         {
@@ -88,6 +122,11 @@ public class TagDatabase implements IDatabase<String, Tag> {
         }
         
     }
+    
+    /**
+     * pulls the data from the saveLocation and puts it in the database
+     * @return 
+     */
     private List<Tag> Load()
     {
         List<Tag> tags = new ArrayList<Tag>();
