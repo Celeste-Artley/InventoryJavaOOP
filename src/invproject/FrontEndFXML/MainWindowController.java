@@ -21,6 +21,7 @@ import javafx.stage.Window;
 import invproject.FrontEndFXML.DatabaseUtils;
 import invproject.User;
 import javafx.application.Platform;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextField;
 
 
@@ -53,9 +54,28 @@ public class MainWindowController {
     @FXML
     private TextField newCategory;
     
+    @FXML
+    private MenuItem manageUsers;
+    @FXML
+    private SeparatorMenuItem manageUsersSeparator;
+    
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+    /**
+     * Disables ManageMenu option if not an Admin
+     */
+    public void initialize() {
+        // This will need to be edited once roles are added
+        if(DatabaseUtils.loggedInUser.getRole()){
+            manageUsers.setVisible(true);
+            manageUsersSeparator.setVisible(true);
+        } else {
+          manageUsers.setVisible(false);
+          manageUsersSeparator.setVisible(false);
+        }
+    }
     
     /**
      * Changes the active window to the Edit Account page.
@@ -67,7 +87,7 @@ public class MainWindowController {
         stage = (Stage)categoryName.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        DatabaseUtils.loggedInUser = null;
+        // DatabaseUtils.loggedInUser = null;
         stage.show();
     }
     
@@ -77,18 +97,11 @@ public class MainWindowController {
      * @throws IOException 
      */
     public void changeSceneToManageUsers(ActionEvent event) throws IOException{    
-        if(DatabaseUtils.loggedInUser.getRole())
-        {
-            Parent root = FXMLLoader.load(getClass().getResource("ManageUsers.fxml"));
-            stage = (Stage)categoryName.getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else
-        {
-            System.out.println("You are not an admin. please log into an anmin account");
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("ManageUsers.fxml"));
+        stage = (Stage)categoryName.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     /**
