@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
  * @author Celeste Artley
  */
 public class POrder {
+
    private String dateCreated;
    private String lastUpdated;
    private Integer amountOrdered = 0;
@@ -20,13 +21,38 @@ public class POrder {
    public POrder()
    {
        dateCreated = dtf.format(now);
+       lastUpdated = dtf.format(now);
    }
-   public POrder(Integer orderedAmount)
+
+    /**
+     * For creating a purchase order with a desired amount.
+     * @param orderedAmount
+     */
+    public POrder(Integer orderedAmount)
    {
        amountOrdered = orderedAmount;
        dateCreated = dtf.format(now);
+       lastUpdated = dtf.format(now);
    }
+    
+    /**
+     * Used for reading from the database.
+     * @param orderedAmount
+     * @param dateCreated
+     * @param lastUpdated 
+     */
+   public POrder(Integer orderedAmount, String dateCreated, String lastUpdated)
+   {
+       amountOrdered = orderedAmount;
+       this.dateCreated = dateCreated;
+       this.lastUpdated = lastUpdated;
+   }
+   
    //Start of getters and setters
+    public String getDateCreated() {
+        return dateCreated;
+    }
+    
    public String getLastUpdated()
     {
         return lastUpdated;

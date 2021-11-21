@@ -110,7 +110,7 @@ public class CreateAccountController {
         {
             
             Alert loginWrong = new Alert(AlertType.ERROR);
-            loginWrong.setHeaderText("Your username needs to be longer than 9 characters.");
+            loginWrong.setHeaderText("You need at least 9 characters in your user name");
             loginWrong.showAndWait();
             return false;
         }

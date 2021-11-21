@@ -5,10 +5,12 @@
 package invproject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * This is a Static variable database of all Item objects. 
@@ -20,7 +22,15 @@ public class ItemDatabase implements IDatabase<String, Item> {
     
     public ItemDatabase()
     {
-        items = Load();
+        try
+        {
+            items = Load();
+        }
+        catch(Exception e)
+        {
+           System.out.print(e);
+        }
+        
         POrder order = new POrder(5);
         List<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Red"));
@@ -202,15 +212,16 @@ public class ItemDatabase implements IDatabase<String, Item> {
                     tagRequirements = tagRequirements + t.getName() + " ";
                 }
                 
-                String orderRequrements = i.getOrderInfo().getammountOrdered() +  " | " 
+                String orderRequrements = i.getOrderInfo().getammountOrdered() +  " " + i.getOrderInfo().getDateCreated() + " "
                         + i.getOrderInfo().getLastUpdated();
                 
-                String itemRequrements = i.getName() + " | " + i.getCategory().getName()
-                        + " | " + i.getQuantity()+ " | " +i.getlDescription() 
-                        + " | " +i.getsDescription() + " | " + orderRequrements 
-                         + " ^ " + tagRequirements + " * ";
+                String itemRequrements;
+                itemRequrements = i.getName() + " " + i.getCategory().getName()
+                        + " " + i.getQuantity()+ " " + i.getlDescription()
+                        + " | " +i.getsDescription() + " | " + orderRequrements
+                        + " " + tagRequirements + " * ";
                 
-                fwriter.write(itemRequrements+ "\n");
+                fwriter.write(itemRequrements + "\n");
             }
             fwriter.close();
         }
@@ -224,9 +235,61 @@ public class ItemDatabase implements IDatabase<String, Item> {
      * pulls the data from the saveLocation and puts it in the database
      * @return 
      */
-    private List<Item> Load()
+    private List<Item> Load() throws FileNotFoundException
     {
-        List<Item> items = new ArrayList<Item>();
-        return items;
+        List<Item> returnItems = new ArrayList<>();
+        File file = new File(saveLocation);
+        if(file.canRead())
+        {
+            Boolean b = false;
+            try (Scanner scanner = new Scanner(file)) {
+                while(scanner.hasNext())
+                {
+                    String lDescription = "", sDescription = "";
+                    List<Tag> tags = new ArrayList<>();
+                    String itemName = scanner.next();
+                    String categoryName = scanner.next();
+                    Integer quantity = scanner.nextInt();
+                    b = true;
+                    while(b)
+                    {
+                        String nextWord = scanner.next();
+                        if(nextWord.equals("|"))
+                        {
+                            b = false;
+                        }
+                        lDescription += (nextWord + " ");
+                    }
+                    b = true;
+                    while(b)
+                    {
+                        String nextWord = scanner.next();
+                        if(nextWord.equals("|"))
+                        {
+                            b = false;
+                        }
+                        sDescription += (nextWord + " ");
+                    }
+                    Integer numOrdered = scanner.nextInt();
+                    String dateCreate = scanner.next() + scanner.next();
+                    String lastUpdated = scanner.next() + scanner.next();
+                    POrder order = new POrder(numOrdered, dateCreate, lastUpdated);
+                    
+                    b = true;
+                    while(b)
+                    {
+                        String nextTag = scanner.next();
+                        if(nextTag.equals("*"))
+                        {
+                            b = false;
+                        }
+                        tags.add(new Tag(nextTag));
+                    } 
+                    Item i = new Item(itemName, categoryName, quantity, lDescription , sDescription, order, tags);
+                    returnItems.add(i);
+                }}
+        }
+        System.out.println(returnItems.size());
+        return returnItems;
     }  
 }
