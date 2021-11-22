@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * This is a Static variable database of all Item objects. 
@@ -250,6 +252,17 @@ public class ItemDatabase implements IDatabase<String, Item> {
         return returnItems;
     }  
 
+    /**
+     * converts the ArrayList to an Observable List for use in FXML
+     * @return
+     */
+    public ObservableList<Item> getObsItems()
+    {
+        ObservableList<Item> itemsObsList;
+        itemsObsList = FXCollections.observableArrayList(items);
+        return itemsObsList;
+        
+    }
     private void testLoadSaveFunctonality() {
         System.out.println("Item Database before items were added: " + items.size());
         POrder order = new POrder(5);

@@ -19,10 +19,16 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import invproject.FrontEndFXML.DatabaseUtils;
+import invproject.Item;
+import invproject.POrder;
 import invproject.User;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 /**
@@ -33,6 +39,27 @@ public class MainWindowController {
     @FXML
     private Label categoryName;
 
+    @FXML
+    private TableView ItemTable;
+    @FXML
+    private TableColumn ItemCol;
+    @FXML
+    private TableColumn TagCol;
+    @FXML
+    private TableColumn CreatedCol;
+    @FXML
+    private TableColumn LastModCol;
+    @FXML
+    private TableColumn SDecCol;
+    @FXML
+    private TableColumn LDecCol;
+    @FXML
+    private TableColumn CurrentCol;
+    @FXML
+    private TableColumn ReorderCol;
+    @FXML
+    private TableColumn PendingCol;
+    
     @FXML
     private Font x1;
 
@@ -67,6 +94,7 @@ public class MainWindowController {
      * Disables ManageMenu option if not an Admin
      */
     public void initialize() {
+        loadItemsIntoMainWindow();
         // This will need to be edited once roles are added
         if(DatabaseUtils.loggedInUser.getRole()){
             manageUsers.setVisible(true);
@@ -137,5 +165,23 @@ public class MainWindowController {
         DatabaseUtils.tagDatabase.Save();
         DatabaseUtils.categoryDatabase.Save();
         Platform.exit();
+    }
+    /**
+     * Displays the items at the start loading into the main window.
+     */
+    private void loadItemsIntoMainWindow() {
+        ObservableList<Item> items = DatabaseUtils.itemDatabase.getObsItems();
+        ItemCol.setCellValueFactory(new PropertyValueFactory<Item,String>("name"));
+        TagCol.setCellValueFactory(new PropertyValueFactory<Item,String>("stringOfTags"));
+        CreatedCol.setCellValueFactory(new PropertyValueFactory<Item,String>("dateCreated"));
+        LastModCol.setCellValueFactory(new PropertyValueFactory<Item,String>("dateUpdated"));
+        //For some reason this is not able to be read from the Item class.
+        //SDecCol.setCellValueFactory(new PropertyValueFactory<Item,String>("sDescription"));
+        //LDecCol.setCellValueFactory(new PropertyValueFactory<Item,String>("lDescription"));
+        CurrentCol.setCellValueFactory(new PropertyValueFactory<Item,Integer>("quantity"));
+        ReorderCol.setCellValueFactory(new PropertyValueFactory<Item,Integer>("ammountOrdered"));
+        PendingCol.setCellValueFactory(new PropertyValueFactory<Item,String>("isOnOrder"));
+        
+        ItemTable.setItems(items);
     }
 }

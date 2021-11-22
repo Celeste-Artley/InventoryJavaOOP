@@ -167,17 +167,17 @@
                               </Label>
                               <SplitPane dividerPositions="0.6992031872509961, 0.9601593625498008" layoutY="45.0" orientation="VERTICAL" prefHeight="504.0" prefWidth="668.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
                                 <items>
-                                    <TableView prefHeight="331.0" prefWidth="666.0">
+                                    <TableView fx:id="ItemTable" prefHeight="331.0" prefWidth="666.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Item" />
-                                        <TableColumn prefWidth="75.0" text="Tag" />
-                                          <TableColumn prefWidth="92.0" text="Created Date" />
-                                          <TableColumn prefWidth="92.0" text="Last Modified" />
-                                          <TableColumn prefWidth="112.0" text="Short Description" />
-                                          <TableColumn prefWidth="118.0" text="Long Description" />
-                                          <TableColumn prefWidth="55.0" text="Current" />
-                                          <TableColumn prefWidth="55.0" text="Reorder" />
-                                          <TableColumn prefWidth="55.0" text="Pending" />
+                                        <TableColumn fx:id="ItemCol" prefWidth="75.0" text="Item" />
+                                        <TableColumn fx:id="TagCol" prefWidth="75.0" text="Tag" />
+                                          <TableColumn fx:id="CreatedCol" prefWidth="92.0" text="Created Date" />
+                                          <TableColumn fx:id="LastModCol" prefWidth="92.0" text="Last Modified" />
+                                          <TableColumn fx:id="SDecCol" prefWidth="112.0" text="Short Description" />
+                                          <TableColumn fx:id="LDecCol" prefWidth="118.0" text="Long Description" />
+                                          <TableColumn fx:id="CurrentCol" prefWidth="55.0" text="Current" />
+                                          <TableColumn fx:id="ReorderCol" prefWidth="55.0" text="Reorder" />
+                                          <TableColumn fx:id="PendingCol" prefWidth="55.0" text="Pending" />
                                       </columns>
                                        <contextMenu>
                                           <ContextMenu>
