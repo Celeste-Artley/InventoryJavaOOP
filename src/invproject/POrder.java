@@ -5,6 +5,7 @@
 package invproject;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;   
+import java.time.LocalTime;
 /**
  * Holds the items information about purchasing and ordering.
  * @author Celeste Artley
@@ -16,12 +17,13 @@ public class POrder {
    private Integer amountOrdered = 0;
    
    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-   LocalDateTime now = LocalDateTime.now();  
+   LocalDateTime now = LocalDateTime.now();
    
    public POrder()
    {
        dateCreated = dtf.format(now);
        lastUpdated = dtf.format(now);
+       //LocalDateTime.parse(dateCreated, dtf)
    }
 
     /**

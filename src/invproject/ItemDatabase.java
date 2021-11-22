@@ -25,20 +25,13 @@ public class ItemDatabase implements IDatabase<String, Item> {
         try
         {
             items = Load();
+            System.out.println(items.size());
         }
         catch(Exception e)
         {
            System.out.print(e);
         }
-        
-        POrder order = new POrder(5);
-        List<Tag> tags = new ArrayList<>();
-        tags.add(new Tag("Red"));
-        tags.add(new Tag("Blue"));
-        tags.add(new Tag("Summer"));
-        Item i = new Item("Shirt", "Clothes", 20, "a shirt that looks pretty", "a shirt", order,tags);
-        items.add(i);
-        Save();
+        testLoadSaveFunctonality();
     }
     
     public List<Item> getItems()
@@ -205,23 +198,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
             FileWriter fwriter = new FileWriter(saveLocation);
             for(Item i : items)
             {
-                String tagRequirements = "";
-                
-                for(Tag t: i.getTags())
-                {
-                    tagRequirements = tagRequirements + t.getName() + " ";
-                }
-                
-                String orderRequrements = i.getOrderInfo().getammountOrdered() +  " " + i.getOrderInfo().getDateCreated() + " "
-                        + i.getOrderInfo().getLastUpdated();
-                
-                String itemRequrements;
-                itemRequrements = i.getName() + " " + i.getCategory().getName()
-                        + " " + i.getQuantity()+ " " + i.getlDescription()
-                        + " | " +i.getsDescription() + " | " + orderRequrements
-                        + " " + tagRequirements + " * ";
-                
-                fwriter.write(itemRequrements + "\n");
+                fwriter.write(i.toString() + "\n");
             }
             fwriter.close();
         }
@@ -241,55 +218,48 @@ public class ItemDatabase implements IDatabase<String, Item> {
         File file = new File(saveLocation);
         if(file.canRead())
         {
-            Boolean b = false;
-            try (Scanner scanner = new Scanner(file)) {
+            try (Scanner scanner = new Scanner(file)) 
+            {
                 while(scanner.hasNext())
-                {
-                    String lDescription = "", sDescription = "";
-                    List<Tag> tags = new ArrayList<>();
-                    String itemName = scanner.next();
-                    String categoryName = scanner.next();
-                    Integer quantity = scanner.nextInt();
-                    b = true;
-                    while(b)
                     {
-                        String nextWord = scanner.next();
-                        if(nextWord.equals("|"))
+                        String read = scanner.nextLine();
+                        String[] itemValues = read.split(",");
+                        
+                        String itemName = itemValues[0];
+                        String itemCategory = itemValues[1];
+                        Integer itemQuantity = Integer.parseInt(itemValues[2]);
+                        String lDescription = itemValues[3];
+                        String sDescription = itemValues[4];
+                        
+                        Integer orderQuantity = Integer.parseInt(itemValues[5]);
+                        String dateCreated = itemValues[6];
+                        String lastEdited = itemValues[7];
+                        POrder order = new POrder(orderQuantity,dateCreated,lastEdited);
+                        
+                        List<Tag> tags = new ArrayList<>();
+                        String[] tagNames = itemValues[8].split(";");
+                        for(String s : tagNames)
                         {
-                            b = false;
+                            tags.add(new Tag(s));
                         }
-                        lDescription += (nextWord + " ");
+                        Item i = new Item(itemName,itemCategory,itemQuantity, lDescription, sDescription,order,tags);
+                        returnItems.add(i);
                     }
-                    b = true;
-                    while(b)
-                    {
-                        String nextWord = scanner.next();
-                        if(nextWord.equals("|"))
-                        {
-                            b = false;
-                        }
-                        sDescription += (nextWord + " ");
-                    }
-                    Integer numOrdered = scanner.nextInt();
-                    String dateCreate = scanner.next() + scanner.next();
-                    String lastUpdated = scanner.next() + scanner.next();
-                    POrder order = new POrder(numOrdered, dateCreate, lastUpdated);
-                    
-                    b = true;
-                    while(b)
-                    {
-                        String nextTag = scanner.next();
-                        if(nextTag.equals("*"))
-                        {
-                            b = false;
-                        }
-                        tags.add(new Tag(nextTag));
-                    } 
-                    Item i = new Item(itemName, categoryName, quantity, lDescription , sDescription, order, tags);
-                    returnItems.add(i);
-                }}
+            }
         }
-        System.out.println(returnItems.size());
         return returnItems;
     }  
+
+    private void testLoadSaveFunctonality() {
+        System.out.println("Database before items were added: " + items.size());
+        POrder order = new POrder(5);
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag("Red"));
+        tags.add(new Tag("Blue"));
+        tags.add(new Tag("Summer"));
+        Item i = new Item("Shirt", "Clothes", 20, "a shirt that looks pretty", "a shirt", order,tags);
+        items.add(i);
+        Save();
+        System.out.println("Database before items were added and saved: " + items.size());
+    }
 }

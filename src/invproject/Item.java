@@ -96,5 +96,25 @@ public class Item {
         this.sDescription = sDescription;
     }
     //End of Getters and Setters
-   
+    
+   @Override
+   public String toString()
+   {
+       String s =  "";
+       String itemTags = itemTagsToString();
+       s = name + "," + categoryName + "," + quantity + "," + lDescription + ","
+               + sDescription + "," + orderInfo.getammountOrdered() + "," + 
+               orderInfo.getDateCreated() + "," + orderInfo.getLastUpdated() + 
+               "," + itemTags;
+       return s;
+   }
+   private String itemTagsToString()
+   {
+       String s = "";
+       for(Tag t : tags)
+       {
+           s += t.getName() + ";";
+       }
+       return s;           
+   }
 }

@@ -1,1 +1,2 @@
-Shirt Clothes 20 a shirt that looks pretty | a shirt | 5 2021/11/21 07:35:04 2021/11/21 07:35:04 Red Blue Summer  * 
+Shirt,Clothes,20,a shirt that looks pretty,a shirt,5,2021/11/21 21:14:05,2021/11/21 21:14:05,Red;Blue;Summer;
+
