@@ -100,7 +100,7 @@ public class Item {
    @Override
    public String toString()
    {
-       String s =  "";
+       String s;
        String itemTags = itemTagsToString();
        s = name + "," + categoryName + "," + quantity + "," + lDescription + ","
                + sDescription + "," + orderInfo.getammountOrdered() + "," + 

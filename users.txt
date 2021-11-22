@@ -1,2 +1,2 @@
-admin 123 admin@dev.com true
-test 123 test@dev.com false
+admin,123,admin@dev.com,true
+test,123,test@dev.com,false

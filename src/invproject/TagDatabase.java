@@ -19,7 +19,16 @@ public class TagDatabase implements IDatabase<String, Tag> {
     
     public TagDatabase()
     {
-        tags = Load();
+        try
+        {
+            tags = Load();
+            //System.out.println(tags.size());
+        }
+        catch(FileNotFoundException e)
+        {
+           System.out.print(e);
+        }
+        //testLoadSaveFunctonality();
     }
 
     public List<Tag> getTags() {
@@ -46,7 +55,7 @@ public class TagDatabase implements IDatabase<String, Tag> {
         Tag val = null;
         for (Tag t : tags)
         {
-            if(t.getName() == s)
+            if(t.getName().equals(s))
             {
                 val = t;
             }
@@ -66,7 +75,7 @@ public class TagDatabase implements IDatabase<String, Tag> {
     {
         for (Tag t : tags)
         {
-            if(t.getName() == tagName)
+            if(t.getName().equals(tagName))
             {
                t.setName(value.getName());  
             }
@@ -83,7 +92,7 @@ public class TagDatabase implements IDatabase<String, Tag> {
     {
         for (Tag t : tags)
         {
-            if(t.getName() == s)
+            if(t.getName().equals(s))
             {
                tags.remove(t);
             }
@@ -100,21 +109,21 @@ public class TagDatabase implements IDatabase<String, Tag> {
             File file = new File(saveLocation);
             if(!file.exists())
             {
-               try 
-               {
-                   file.createNewFile();                
-               }
-               catch(IOException e)
-               {
-                   System.out.print(e);
-               }
-            }
-            try (FileWriter fwriter = new FileWriter(saveLocation)) {
-                for(Tag t : tags)
+                try
                 {
-                    fwriter.write(t.getName() + " ");
+                    file.createNewFile();
+                }
+                catch(IOException e)
+                {
+                    System.out.print(e);  
                 }
             }
+            FileWriter fwriter = new FileWriter(saveLocation);
+            for(Tag t : tags)
+            {
+                fwriter.write(t.toString() + "\n");
+            }
+            fwriter.close();
         }
         catch(IOException e)
         {
@@ -127,9 +136,37 @@ public class TagDatabase implements IDatabase<String, Tag> {
      * pulls the data from the saveLocation and puts it in the database
      * @return 
      */
-    private List<Tag> Load()
+    private List<Tag> Load() throws FileNotFoundException
     {
-        List<Tag> tags = new ArrayList<Tag>();
-        return tags;
+        List<Tag> returnTags = new ArrayList<Tag>();
+        List<Item> returnItems = new ArrayList<>();
+        File file = new File(saveLocation);
+        if(file.canRead())
+        {
+            try (Scanner scanner = new Scanner(file)) 
+            {
+                while(scanner.hasNext())
+                    {
+                        String read = scanner.nextLine();
+                        String[] itemValues = read.split(",");
+                        
+                        String name = itemValues[0];
+
+                        Tag t = new Tag(name);
+                        returnTags.add(t);
+                    }
+            }
+        }
+        return returnTags;
+    }
+    
+    private void testLoadSaveFunctonality()      
+    {
+        System.out.println("Tag Database before Tags were added: " + tags.size());
+        tags.add(new Tag("Red"));
+        tags.add(new Tag("Blue"));
+        tags.add(new Tag("Summer"));
+        Save();
+        System.out.println("Tag Database after Tags were added and saved: " + tags.size());
     }
 }

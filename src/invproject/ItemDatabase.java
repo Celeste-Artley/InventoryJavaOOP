@@ -25,13 +25,13 @@ public class ItemDatabase implements IDatabase<String, Item> {
         try
         {
             items = Load();
-            System.out.println(items.size());
+            //System.out.println(items.size());
         }
-        catch(Exception e)
+        catch(FileNotFoundException e)
         {
            System.out.print(e);
         }
-        testLoadSaveFunctonality();
+        //testLoadSaveFunctonality();
     }
     
     public List<Item> getItems()
@@ -251,7 +251,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
     }  
 
     private void testLoadSaveFunctonality() {
-        System.out.println("Database before items were added: " + items.size());
+        System.out.println("Item Database before items were added: " + items.size());
         POrder order = new POrder(5);
         List<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Red"));
@@ -260,6 +260,6 @@ public class ItemDatabase implements IDatabase<String, Item> {
         Item i = new Item("Shirt", "Clothes", 20, "a shirt that looks pretty", "a shirt", order,tags);
         items.add(i);
         Save();
-        System.out.println("Database before items were added and saved: " + items.size());
+        System.out.println("Item Database after items were added and saved: " + items.size());
     }
 }
