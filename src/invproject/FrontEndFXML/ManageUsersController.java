@@ -4,6 +4,7 @@
  */
 package invproject.FrontEndFXML;
 
+import invproject.*;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,12 +19,14 @@ import javafx.stage.Stage;
 
 /**
  * A controller for the Manage Users JavaFX FXML file.
- * @author sethm and Justin R. Fox
+ * @authors sethm and Justin R. Fox
  */
 public class ManageUsersController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    
+    public static User currentlySelectedUser;
     
     @FXML
     private Label userNameLabel;
@@ -44,18 +47,38 @@ public class ManageUsersController {
     @FXML 
     private ChoiceBox newUserRole;
     /**
-     * adds lines for the role drop down
+     * Adds lines for the role drop down and sets the initial screen.
      */
     public void initialize() {
         newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Administrator");
-        userNameLabel.setText(DatabaseUtils.loggedInUser.getUsername());
-        userEmailLabel.setText(DatabaseUtils.loggedInUser.getEmail());
-        userPasswordLabel.setText(DatabaseUtils.loggedInUser.getPassword());
-        if (DatabaseUtils.loggedInUser.getRole()) {
+        currentlySelectedUser = DatabaseUtils.loggedInUser;
+        refreshScreen();
+    }
+    
+    /**
+     * Populates user info and user list labels.
+     */
+    public void refreshScreen() {
+        userNameLabel.setText(currentlySelectedUser.getUsername());
+        userEmailLabel.setText(currentlySelectedUser.getEmail());
+        userPasswordLabel.setText(currentlySelectedUser.getPassword());
+        // The following if-else statement should be replaced when the User's Role attribute is corrected to reflect a specific role.
+        if (currentlySelectedUser.getRole()) {
             userRoleLabel.setText("Administrator");
         } else {
             userRoleLabel.setText("NON-Administrator");
         }
+        // Also update the displayed User List in the Left panel.
+    }
+    
+    /**
+     * Selecting another user.
+     * @param event
+     * @throws IOException 
+     */
+    public void selectSomeoneElse(ActionEvent event) throws IOException{
+        // currentlySelectedUser = whatever user was selected from the list - No selectable list available in fxml yet.
+        refreshScreen();
     }
     
     /**
@@ -64,9 +87,10 @@ public class ManageUsersController {
      * @throws IOException 
      */
     public void updateUserEmail(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdateEmail(userNameLabel.getText(), newUserEmail.getText());
-        DatabaseUtils.userDatabase.Save();
         userEmailLabel.setText(newUserEmail.getText());
+        DatabaseUtils.userDatabase.UpdateEmail(currentlySelectedUser.getUsername(), newUserEmail.getText());
+        DatabaseUtils.userDatabase.Save();
+        newUserEmail.setText("");
     }
     
     /**
@@ -75,9 +99,10 @@ public class ManageUsersController {
      * @throws IOException 
      */
     public void updateUserPassword(ActionEvent event) throws IOException{
-        DatabaseUtils.userDatabase.UpdatePassword(userNameLabel.getText(), newUserPassword.getText());
-        DatabaseUtils.userDatabase.Save();
         userPasswordLabel.setText(newUserPassword.getText());
+        DatabaseUtils.userDatabase.UpdatePassword(currentlySelectedUser.getUsername(), newUserPassword.getText());
+        DatabaseUtils.userDatabase.Save();
+        newUserPassword.setText("");
     }
     
     /**
@@ -86,27 +111,54 @@ public class ManageUsersController {
      * @throws IOException 
      */
     public void updateUserRole(ActionEvent event) throws IOException{
-        // No UpdateRole function available in UserDatabase
-        // Just updates role label, no connection to backend
         userRoleLabel.setText(newUserRole.getValue().toString());
+        // Just updates role label, no connection to backend.
+        // No UpdateRole function available in UserDatabase yet.
     }
     
     /**
      * Creates a new user.
      */
     public void addUser(){
-        invproject.User user;
-        user = new invproject.User(newUser.getText(), "password", "email");
-        DatabaseUtils.userDatabase.Create(user);
-        DatabaseUtils.userDatabase.Save();
+        Boolean alreadyExists = false;
+        if (newUser.getText() != "") {
+            for (invproject.User u : DatabaseUtils.userDatabase.getUsers())
+            {
+                if(u.getUsername().equals(newUser.getText()))
+                {
+                    alreadyExists = true;
+                    // Error Message Pop-Up Perhaps?
+                }
+            }
+            if (!alreadyExists)
+            {
+                invproject.User user;
+                user = new invproject.User(newUser.getText(), "password", "email");
+                DatabaseUtils.userDatabase.Create(user);
+                DatabaseUtils.userDatabase.Save();
+                currentlySelectedUser = user;
+                refreshScreen();
+            }
+            newUser.setText("");        
+        }
     }
     
     /**
      * deletes a selected user from the database.
      */
     public void removeUser(){
-        DatabaseUtils.userDatabase.Delete(userNameLabel.getText());
-        DatabaseUtils.userDatabase.Save();
+        if (currentlySelectedUser != DatabaseUtils.loggedInUser) {
+            // Without the above if statement, but with line 154 below active, this function allowed you to delete yourself.
+            // Since that did work, and addUser seems totally to work, I (Justin R. Fox) do not understand why this doesn't work for the most recently added user.
+            // Makes no sense to me, but that's why the next line is commented out now.
+            // DatabaseUtils.userDatabase.Delete(currentlySelectedUser.getUsername()); 
+            DatabaseUtils.userDatabase.Save();
+            userNameLabel.setText("User Removed");
+            userEmailLabel.setText("");
+            userPasswordLabel.setText("");
+            userRoleLabel.setText("");
+            // Also, this user should be removed from the list of users in the left panel.
+        }
     }
     
     /**
