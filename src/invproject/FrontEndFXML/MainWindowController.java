@@ -197,13 +197,11 @@ public class MainWindowController {
      */
     public void loadListOfCategories(){
         TreeItem treeRoot = new TreeItem("Categories");
-        TreeItem myCategories = new TreeItem("MyCategories");
-        treeRoot.getChildren().add(myCategories);
         
         List<Category> categories = DatabaseUtils.categoryDatabase.getCategories();
         for(Category c : categories)
         {
-            myCategories.getChildren().add(new TreeItem(c.getName()));
+            treeRoot.getChildren().add(new TreeItem(c.getName()));
         }
         categoriesTree.setRoot(treeRoot);
     }
