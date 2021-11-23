@@ -4,30 +4,28 @@
  */
 package invproject.FrontEndFXML;
 
+import invproject.Category;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import invproject.FrontEndFXML.DatabaseUtils;
 import invproject.Item;
-import invproject.POrder;
-import invproject.User;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
@@ -38,7 +36,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class MainWindowController {
     @FXML
     private Label categoryName;
+    @FXML
+    private TreeView categoriesTree;
+    
 
+    //Table properties
     @FXML
     private TableView ItemTable;
     @FXML
@@ -59,6 +61,7 @@ public class MainWindowController {
     private TableColumn ReorderCol;
     @FXML
     private TableColumn PendingCol;
+     //end of Table properties
     
     @FXML
     private Font x1;
@@ -95,6 +98,8 @@ public class MainWindowController {
      */
     public void initialize() {
         loadItemsIntoMainWindow();
+        loadListOfCategories();
+        
         // This will need to be edited once roles are added
         if(DatabaseUtils.loggedInUser.getRole()){
             manageUsers.setVisible(true);
@@ -166,6 +171,7 @@ public class MainWindowController {
         DatabaseUtils.categoryDatabase.Save();
         Platform.exit();
     }
+    
     /**
      * Displays the items at the start loading into the main window.
      */
@@ -182,5 +188,23 @@ public class MainWindowController {
         PendingCol.setCellValueFactory(new PropertyValueFactory<Item,String>("isOnOrder"));
         
         ItemTable.setItems(items);
+    }
+    
+    /**
+     * Loads all the categories from the database.
+     * @param event
+     * @throws IOException 
+     */
+    public void loadListOfCategories(){
+        TreeItem treeRoot = new TreeItem("Categories");
+        TreeItem myCategories = new TreeItem("MyCategories");
+        treeRoot.getChildren().add(myCategories);
+        
+        List<Category> categories = DatabaseUtils.categoryDatabase.getCategories();
+        for(Category c : categories)
+        {
+            myCategories.getChildren().add(new TreeItem(c.getName()));
+        }
+        categoriesTree.setRoot(treeRoot);
     }
 }

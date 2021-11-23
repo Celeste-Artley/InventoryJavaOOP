@@ -132,7 +132,7 @@
                             <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
                           </textFill>
                         </Label>
-                              <TreeView editable="true" layoutY="74.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="475.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
+                              <TreeView fx:id="categoriesTree" editable="true" layoutY="74.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="475.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
                                  <contextMenu>
                                     <ContextMenu>
                                       <items>
