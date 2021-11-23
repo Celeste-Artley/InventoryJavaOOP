@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 /**
  * A controller for the Manage Users JavaFX FXML file.
- * @author sethm
+ * @author sethm and Justin R. Fox
  */
 public class ManageUsersController {
     private Stage stage;
@@ -48,6 +48,14 @@ public class ManageUsersController {
      */
     public void initialize() {
         newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Administrator");
+        userNameLabel.setText(DatabaseUtils.loggedInUser.getUsername());
+        userEmailLabel.setText(DatabaseUtils.loggedInUser.getEmail());
+        userPasswordLabel.setText(DatabaseUtils.loggedInUser.getPassword());
+        if (DatabaseUtils.loggedInUser.getRole()) {
+            userRoleLabel.setText("Administrator");
+        } else {
+            userRoleLabel.setText("NON-Administrator");
+        }
     }
     
     /**
@@ -56,8 +64,8 @@ public class ManageUsersController {
      * @throws IOException 
      */
     public void updateUserEmail(ActionEvent event) throws IOException{
-        // Use newUserEmail.getText() and change the database file to match.
-        // Just updates email label, no connection to backend
+        DatabaseUtils.userDatabase.UpdateEmail(userNameLabel.getText(), newUserEmail.getText());
+        DatabaseUtils.userDatabase.Save();
         userEmailLabel.setText(newUserEmail.getText());
     }
     
@@ -67,8 +75,8 @@ public class ManageUsersController {
      * @throws IOException 
      */
     public void updateUserPassword(ActionEvent event) throws IOException{
-        // Use newUserPassword.getText() and change the database file to match.
-        // Just updates password label, no connection to backend
+        DatabaseUtils.userDatabase.UpdatePassword(userNameLabel.getText(), newUserPassword.getText());
+        DatabaseUtils.userDatabase.Save();
         userPasswordLabel.setText(newUserPassword.getText());
     }
     
@@ -78,6 +86,7 @@ public class ManageUsersController {
      * @throws IOException 
      */
     public void updateUserRole(ActionEvent event) throws IOException{
+        // No UpdateRole function available in UserDatabase
         // Just updates role label, no connection to backend
         userRoleLabel.setText(newUserRole.getValue().toString());
     }
@@ -86,14 +95,18 @@ public class ManageUsersController {
      * Creates a new user.
      */
     public void addUser(){
-    
+        invproject.User user;
+        user = new invproject.User(newUser.getText(), "password", "email");
+        DatabaseUtils.userDatabase.Create(user);
+        DatabaseUtils.userDatabase.Save();
     }
     
     /**
      * deletes a selected user from the database.
      */
     public void removeUser(){
-        
+        DatabaseUtils.userDatabase.Delete(userNameLabel.getText());
+        DatabaseUtils.userDatabase.Save();
     }
     
     /**
