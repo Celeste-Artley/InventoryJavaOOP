@@ -4,6 +4,9 @@
  */
 package invproject;
 import java.util.*;  
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 /**
  * Holds all the information about each Item
  * @author Celeste Artley
@@ -193,4 +196,22 @@ public class Item {
        }
        return s;           
    }
+   /**
+    * this method is needed to convert the Long description into a property for the table.
+    * @return 
+    */
+   public final ObjectProperty<String> lDescriptionProperty() {
+        ObjectProperty<String> desc = new SimpleObjectProperty<>();
+        desc.setValue(this.lDescription);
+        return desc;
+    }
+   /**
+    * this method is needed to convert the Short description into a property for the table.
+    * @return 
+    */
+   public final ObjectProperty<String> sDescriptionProperty() {
+        ObjectProperty<String> desc = new SimpleObjectProperty<>();
+        desc.setValue(this.sDescription);
+        return desc;
+    }
 }

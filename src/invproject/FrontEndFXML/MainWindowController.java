@@ -175,9 +175,8 @@ public class MainWindowController {
         TagCol.setCellValueFactory(new PropertyValueFactory<Item,String>("stringOfTags"));
         CreatedCol.setCellValueFactory(new PropertyValueFactory<Item,String>("dateCreated"));
         LastModCol.setCellValueFactory(new PropertyValueFactory<Item,String>("dateUpdated"));
-        //For some reason this is not able to be read from the Item class.
-        //SDecCol.setCellValueFactory(new PropertyValueFactory<Item,String>("sDescription"));
-        //LDecCol.setCellValueFactory(new PropertyValueFactory<Item,String>("lDescription"));
+        SDecCol.setCellValueFactory(new PropertyValueFactory<Item,String>("sDescription"));
+        LDecCol.setCellValueFactory(new PropertyValueFactory<Item,String>("lDescription"));
         CurrentCol.setCellValueFactory(new PropertyValueFactory<Item,Integer>("quantity"));
         ReorderCol.setCellValueFactory(new PropertyValueFactory<Item,Integer>("ammountOrdered"));
         PendingCol.setCellValueFactory(new PropertyValueFactory<Item,String>("isOnOrder"));
