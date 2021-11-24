@@ -148,10 +148,8 @@ public class ManageUsersController {
      */
     public void removeUser(){
         if (currentlySelectedUser != DatabaseUtils.loggedInUser) {
-            // Without the above if statement, but with line 154 below active, this function allowed you to delete yourself.
-            // Since that did work, and addUser seems totally to work, I (Justin R. Fox) do not understand why this doesn't work for the most recently added user.
-            // Makes no sense to me, but that's why the next line is commented out now.
-            // DatabaseUtils.userDatabase.Delete(currentlySelectedUser.getUsername()); 
+            // Without the above if statement, but with line 154 below active, this function allowed you to delete yourself.  We don't want that.
+            DatabaseUtils.userDatabase.Delete(currentlySelectedUser.getUsername()); 
             DatabaseUtils.userDatabase.Save();
             userNameLabel.setText("User Removed");
             userEmailLabel.setText("");
