@@ -134,12 +134,19 @@ public class UserDatabase implements IDatabase<String, User> {
     @Override
     public void Delete(String s)
     {
+        User userToDelete = null;
+        Boolean isInDatabase = false;
         for (User u : users)
         {
             if(u.getUsername().equals(s))
             {
-               users.remove(u);
+              userToDelete = u;
+              isInDatabase = true;
             }
+        }
+        if(isInDatabase)
+        {
+            users.remove(userToDelete);
         }
     }
     
