@@ -90,12 +90,19 @@ public class TagDatabase implements IDatabase<String, Tag> {
     @Override
     public void Delete(String s)
     {
+        Tag tagToDelete = null;
+        boolean isInDatabase = false;
         for (Tag t : tags)
         {
             if(t.getName().equals(s))
             {
-               tags.remove(t);
+               tagToDelete = t;
+               isInDatabase = true;
             }
+        }
+        if(isInDatabase)
+        {
+            tags.remove(tagToDelete);
         }
     }
     

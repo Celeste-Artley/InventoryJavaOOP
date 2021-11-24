@@ -99,12 +99,19 @@ public class ItemDatabase implements IDatabase<String, Item> {
     @Override
     public void Delete(String s)
     {
+        Item itemToDelete = null;
+        boolean isInDatabase = false;
         for (Item i : items)
         {
             if(i.getName().equals(s))
             {
-               items.remove(i);
+               itemToDelete = i;
+               isInDatabase = true;
             }
+        }
+        if(isInDatabase)
+        {
+            items.remove(itemToDelete);
         }
     }
     

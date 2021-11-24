@@ -94,9 +94,20 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     @Override
     public void Delete(String s)
     {
-        categories.stream().filter(c -> (c.getName().equals(s))).forEachOrdered(c -> {
-            categories.remove(c);
-        });
+        Category categoryToDelete = null;
+        boolean isInDatabase = false;
+        for (Category c : categories)
+        {
+            if(c.getName().equals(s))
+            {
+               categoryToDelete = c;
+               isInDatabase = true;
+            }
+        }
+        if(isInDatabase)
+        {
+            categories.remove(categoryToDelete);
+        }
     }
     
     /**
