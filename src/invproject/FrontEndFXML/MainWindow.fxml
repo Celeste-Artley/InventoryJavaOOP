@@ -74,7 +74,6 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Update Selected" />
             <MenuItem mnemonicParsing="false" onAction="#onDeleteSelected" text="Delete Selected" />
           </items>
         </Menu>
