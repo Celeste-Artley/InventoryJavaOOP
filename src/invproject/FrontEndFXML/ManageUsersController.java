@@ -6,14 +6,22 @@ package invproject.FrontEndFXML;
 
 import invproject.*;
 import java.io.IOException;
+import java.util.Collections;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import static javafx.scene.control.SelectionMode.SINGLE;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,7 +34,8 @@ public class ManageUsersController {
     private Scene scene;
     private Parent root;
     
-    public static User currentlySelectedUser;
+    private User currentlySelectedUser;
+    private ObservableList<String> userObservableList;
     
     @FXML
     private Label userNameLabel;
@@ -42,16 +51,32 @@ public class ManageUsersController {
     private TextField newUserPassword;
     @FXML
     private TextField newUser;
-
-    
+    @FXML
+    private ListView userList;    
     @FXML 
     private ChoiceBox newUserRole;
+    
+    
     /**
      * Adds lines for the role drop down and sets the initial screen.
      */
     public void initialize() {
         newUserRole.getItems().addAll("Read","Edit","Accounting","Update","Manage","Administrator");
         currentlySelectedUser = DatabaseUtils.loggedInUser;
+        userObservableList = FXCollections.observableArrayList();
+        for (invproject.User u : DatabaseUtils.userDatabase.getUsers()) {
+            userObservableList.add(u.getUsername());
+        }
+        userList.setItems(userObservableList);
+        Collections.sort(userObservableList);
+        userList.getSelectionModel().setSelectionMode(SINGLE);
+        userList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() { 
+            public void changed(ObservableValue<? extends String> changed, String oldVal, String newVal) {
+                currentlySelectedUser = DatabaseUtils.userDatabase.Read(newVal);
+                refreshScreen();
+            }
+        });
+        userList.getSelectionModel().select(currentlySelectedUser.getUsername());
         refreshScreen();
     }
     
@@ -68,21 +93,10 @@ public class ManageUsersController {
         } else {
             userRoleLabel.setText("NON-Administrator");
         }
-        // Also update the displayed User List in the Left panel.
     }
     
     /**
-     * Selecting another user.
-     * @param event
-     * @throws IOException 
-     */
-    public void selectSomeoneElse(ActionEvent event) throws IOException{
-        // currentlySelectedUser = whatever user was selected from the list - No selectable list available in fxml yet.
-        refreshScreen();
-    }
-    
-    /**
-     * Updating the selected user email.
+     * Updates the selected user's email.
      * @param event
      * @throws IOException 
      */
@@ -94,7 +108,7 @@ public class ManageUsersController {
     }
     
     /**
-     * Updates the selected user password
+     * Updates the selected user's password.
      * @param event
      * @throws IOException 
      */
@@ -114,29 +128,38 @@ public class ManageUsersController {
         userRoleLabel.setText(newUserRole.getValue().toString());
         // Just updates role label, no connection to backend.
         // No UpdateRole function available in UserDatabase yet.
+        // No proper Role attribute in User yet.
     }
     
     /**
      * Creates a new user.
      */
     public void addUser(){
-        Boolean alreadyExists = false;
-        if (newUser.getText() != "") {
+        boolean alreadyExists = false;
+        if (newUser.getText().equals("")) {
+            Alert noName = new Alert(Alert.AlertType.ERROR);
+            noName.setHeaderText("No new username was entered.  Please try again.");
+            noName.showAndWait();
+        } else {
             for (invproject.User u : DatabaseUtils.userDatabase.getUsers())
             {
-                if(u.getUsername().equals(newUser.getText()))
-                {
+                if(u.getUsername().equals(newUser.getText())) {
                     alreadyExists = true;
-                    // Error Message Pop-Up Perhaps?
                 }
             }
-            if (!alreadyExists)
-            {
+            if (alreadyExists) {
+                Alert existsAlready = new Alert(Alert.AlertType.ERROR);
+                existsAlready.setHeaderText("That user already exists.  Please try again.");
+                existsAlready.showAndWait();
+            } else {
                 invproject.User user;
-                user = new invproject.User(newUser.getText(), "password", "email");
+                user = new invproject.User(newUser.getText(), "password", newUser.getText() + "@dev.com");
                 DatabaseUtils.userDatabase.Create(user);
                 DatabaseUtils.userDatabase.Save();
                 currentlySelectedUser = user;
+                userObservableList.add(newUser.getText());
+                Collections.sort(userObservableList);
+                userList.getSelectionModel().select(user.getUsername());
                 refreshScreen();
             }
             newUser.setText("");        
@@ -144,18 +167,23 @@ public class ManageUsersController {
     }
     
     /**
-     * deletes a selected user from the database.
+     * Deletes a selected user from the database.
      */
     public void removeUser(){
-        if (currentlySelectedUser != DatabaseUtils.loggedInUser) {
-            // Without the above if statement, but with line 154 below active, this function allowed you to delete yourself.  We don't want that.
-            DatabaseUtils.userDatabase.Delete(currentlySelectedUser.getUsername()); 
+        if (currentlySelectedUser.equals(DatabaseUtils.loggedInUser)) {
+            Alert neverGiveUpNeverSurrender = new Alert(Alert.AlertType.ERROR);
+            neverGiveUpNeverSurrender.setHeaderText("You don't really want to delete yourself; do you?  No, of course you don't.  Stop that.");
+            neverGiveUpNeverSurrender.showAndWait();
+        } else {
+            DatabaseUtils.userDatabase.Delete(currentlySelectedUser.getUsername());
             DatabaseUtils.userDatabase.Save();
+            userObservableList.remove(currentlySelectedUser.getUsername());
+            userList.getSelectionModel().clearSelection();
+            Collections.sort(userObservableList);
             userNameLabel.setText("User Removed");
             userEmailLabel.setText("");
             userPasswordLabel.setText("");
             userRoleLabel.setText("");
-            // Also, this user should be removed from the list of users in the left panel.
         }
     }
     
