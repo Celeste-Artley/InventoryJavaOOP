@@ -147,9 +147,22 @@ public class MainWindowController {
      * @throws IOException 
      */
     public void addCategory(ActionEvent event) throws IOException{
-        
-    }
-    public void onCategorySelection(ActionEvent event)throws IOException{
+        String s = newCategory.getText();
+        Category c = DatabaseUtils.categoryDatabase.Read(s);
+        if(!s.equals("") && c == null)
+        {
+            DatabaseUtils.categoryDatabase.Create(new Category(s));
+            DatabaseUtils.categoryDatabase.Save();
+            loadListOfCategories();
+        }
+        else if(s.equals(""))
+        {
+            System.out.println("Please Type in a category.");
+        }
+        else if(c != null)
+        {
+            System.out.println("That Category already exist.");
+        }
         
     }
     /**
@@ -201,7 +214,6 @@ public class MainWindowController {
         TreeItem treeRoot = new TreeItem("Categories");
         treeRoot.setExpanded(true);
         List<Category> categories = DatabaseUtils.categoryDatabase.getCategories();
-        System.out.println(categories);
         for(Category c : categories)
         {
             TreeItem i = new TreeItem(c.getName());
@@ -215,8 +227,6 @@ public class MainWindowController {
             ObservableList<Item> listToShow = FXCollections.observableArrayList();
             for(Item i : items)
             {
-                System.out.println(i.getCategoryName());
-                System.out.println(treeItem.getValue());
                 if(i.getCategoryName().equals(treeItem.getValue()))
                 {
                     listToShow.add(i);
@@ -230,12 +240,17 @@ public class MainWindowController {
                 {
                     this.loadItemsIntoMainWindow(listToShow);
                 }
-            
-            System.out.println("You selected : " +  treeItem.getValue());
-            
-            //loadItemsIntoMainWindow(DatabaseUtils.itemDatabase.getObsItems());
         };
         categoriesTree.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
         categoriesTree.setRoot(treeRoot);
+    }
+    public void onAddItem()throws IOException
+    {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("CreateItem.fxml"));
+        stage = (Stage)categoryName.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -171,7 +171,7 @@
                                           <ContextMenu>
                                             <items>
                                               <MenuItem mnemonicParsing="false" text="Edit" />
-                                                <MenuItem mnemonicParsing="false" text="Add" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onAddItem" text="Add" />
                                             </items>
                                           </ContextMenu>
                                        </contextMenu>
