@@ -3,8 +3,12 @@ package invproject.FrontEndFXML;
 
 import invproject.Category;
 import invproject.Item;
+import invproject.POrder;
+import invproject.Tag;
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -57,7 +61,7 @@ public class CreateItemController {
     private TextField sDescTextField;
 
     @FXML
-    private ComboBox<?> tagsComboBox;
+    private TextField tagsTextField;
 
     @FXML
     void initialize() {
@@ -70,7 +74,7 @@ public class CreateItemController {
         assert nameTextField != null : "fx:id=\"nameTextField\" was not injected: check your FXML file 'CreateItem.fxml'.";
         assert quantityTextField != null : "fx:id=\"quantityTextField\" was not injected: check your FXML file 'CreateItem.fxml'.";
         assert sDescTextField != null : "fx:id=\"sDescTextField\" was not injected: check your FXML file 'CreateItem.fxml'.";
-        assert tagsComboBox != null : "fx:id=\"tagsComboBox\" was not injected: check your FXML file 'CreateItem.fxml'.";
+        assert tagsTextField != null : "fx:id=\"tagsComboBox\" was not injected: check your FXML file 'CreateItem.fxml'.";
         
         // force the field to be numeric only
         quantityTextField.textProperty().addListener(new ChangeListener<String>() {
@@ -86,7 +90,52 @@ public class CreateItemController {
     }
     public void onCreateItem() throws IOException
     {
-        Item i;
+        String name = nameTextField.getText();
+        Integer quantity = 0;
+        if(quantityTextField.getText().length() != 0)
+        {
+            quantity = Integer.parseInt(quantityTextField.getText());
+        }
+        String Category;
+        if(categoryChoiceBox.getSelectionModel().getSelectedItem() != null)
+        {
+            Category = categoryChoiceBox.getSelectionModel().getSelectedItem().toString();
+        }
+        else
+        {
+            Category = null;
+        }
+        String tagText = tagsTextField.getText();
+        List<Tag> tags = new ArrayList<>();
+        String[] tagsArray = tagText.split(" ");
+        for (String s : tagsArray)
+        {
+            if(s.contains(";") || s.contains(","))
+            {
+                System.out.println("Your tags can't contain ; or , characters.");
+            }
+            else
+            {
+                Tag t = new Tag(s);
+                tags.add(t);
+            }
+            
+        }
+        String lDesc = lDescTextArea.getText();
+        String sDesc = sDescTextField.getText();
+        POrder order = new POrder();
+        if(Category == null || name.length() ==  0 || lDesc.length() == 0 || sDesc.length() == 0)
+        {
+            System.out.println("you need to enter all boxes, put an error here.");
+        }
+        else
+        {
+            Item i = new Item(name,Category,quantity,lDesc,sDesc,order,tags);
+            DatabaseUtils.itemDatabase.Create(i);
+            DatabaseUtils.itemDatabase.Save();
+            onCancel();
+        }
+        
     }
     public void onCancel() throws IOException
     {
@@ -102,9 +151,13 @@ public class CreateItemController {
         
         for(Category c : categories)
         {
-            System.out.println(c.getName());
             categoryChoiceBox.getItems().add(c.getName());
         }
+    }
+    public void checkThenAddToTags()
+    {
+        //this method should parse the list of tags that were given by the user
+        //and add them to the database.
     }
 }
 

@@ -7,4 +7,4 @@ Pan,Kitchen,2,Used for frying up food,A pan,18,2021/11/21 00:38:50,2021/11/21 00
 Pot,Kitchen,2,Used for boiling food,A pot,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;Blue;Black;
 Stove,Kitchen,2,Used for making food,A stove,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;4 Cooktop;Hot;
 Fridge,Kitchen,2,Used for keeping food cold,A fridge,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;Double Door;Cold;
-
+Taco,Food,15,A taco made with meat cheese and lettuce.,A taco from the food truck,0,2021/11/26 10:31:29,2021/11/26 10:31:29,Hot;Meat;Mexican;

@@ -64,8 +64,8 @@
           <items>
             <Menu mnemonicParsing="false" text="New">
                      <items>
-                  <MenuItem mnemonicParsing="false" text="Item" />
-                  <MenuItem mnemonicParsing="false" text="Category" />
+                  <MenuItem mnemonicParsing="false" onAction="#onAddItem" text="Item" />
+                  <MenuItem mnemonicParsing="false" onAction="#addCategory" text="Category" />
                      </items></Menu>
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Save" />

@@ -225,20 +225,25 @@ public class MainWindowController {
             TreeItem treeItem = (TreeItem)categoriesTree.getSelectionModel().getSelectedItem();
             ObservableList<Item> items = DatabaseUtils.itemDatabase.getObsItems();
             ObservableList<Item> listToShow = FXCollections.observableArrayList();
-            for(Item i : items)
-            {
-                if(i.getCategoryName().equals(treeItem.getValue()))
+            if(treeItem != null)
                 {
-                    listToShow.add(i);
+                for(Item i : items)
+                {
+                        if(i.getCategoryName().equals(treeItem.getValue()))
+                        {
+                            listToShow.add(i);
+                        }
+
+
                 }
-            }
-            if(treeItem.getValue().equals("Categories"))
-                {
-                    this.loadItemsIntoMainWindow(items);
-                }
-            else
-                {
-                    this.loadItemsIntoMainWindow(listToShow);
+                if(treeItem.getValue().equals("Categories"))
+                    {
+                        this.loadItemsIntoMainWindow(items);
+                    }
+                else
+                    {
+                        this.loadItemsIntoMainWindow(listToShow);
+                    }
                 }
         };
         categoriesTree.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
@@ -246,7 +251,6 @@ public class MainWindowController {
     }
     public void onAddItem()throws IOException
     {
-        
         Parent root = FXMLLoader.load(getClass().getResource("CreateItem.fxml"));
         stage = (Stage)categoryName.getScene().getWindow();
         scene = new Scene(root);
