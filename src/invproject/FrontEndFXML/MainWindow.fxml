@@ -75,7 +75,7 @@
         <Menu mnemonicParsing="false" text="Edit">
           <items>
             <MenuItem mnemonicParsing="false" text="Update Selected" />
-            <MenuItem mnemonicParsing="false" text="Delete Selected" />
+            <MenuItem mnemonicParsing="false" onAction="#onDeleteSelected" text="Delete Selected" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Account">
@@ -125,7 +125,6 @@
                                     <ContextMenu>
                                       <items>
                                           <MenuItem mnemonicParsing="false" text="Add" />
-                                        <MenuItem mnemonicParsing="false" text="Edit" />
                                           <MenuItem mnemonicParsing="false" text="Delete" />
                                       </items>
                                     </ContextMenu>
@@ -170,8 +169,8 @@
                                        <contextMenu>
                                           <ContextMenu>
                                             <items>
-                                              <MenuItem mnemonicParsing="false" text="Edit" />
                                                 <MenuItem mnemonicParsing="false" onAction="#onAddItem" text="Add" />
+                                                <MenuItem mnemonicParsing="false" onAction="#onDeleteSelected" text="Delete" />
                                             </items>
                                           </ContextMenu>
                                        </contextMenu>

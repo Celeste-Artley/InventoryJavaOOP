@@ -257,4 +257,14 @@ public class MainWindowController {
         stage.setScene(scene);
         stage.show();
     }
+    public void onDeleteSelected()throws IOException
+    {
+        if((Item)ItemTable.getSelectionModel().getSelectedItem() != null)
+        {
+        Item i = (Item)ItemTable.getSelectionModel().getSelectedItem();
+        DatabaseUtils.itemDatabase.Delete(i.getName());
+        DatabaseUtils.itemDatabase.Save();
+        loadItemsIntoMainWindow(DatabaseUtils.itemDatabase.getObsItems());
+        }
+    }
 }
