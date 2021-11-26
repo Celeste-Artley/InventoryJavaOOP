@@ -7,8 +7,6 @@ package invproject.FrontEndFXML;
 import invproject.*;
 import java.io.IOException;
 import java.util.Collections;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,11 +68,12 @@ public class ManageUsersController {
         userList.setItems(userObservableList);
         Collections.sort(userObservableList);
         userList.getSelectionModel().setSelectionMode(SINGLE);
-        userList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() { 
-            public void changed(ObservableValue<? extends String> changed, String oldVal, String newVal) {
-                currentlySelectedUser = DatabaseUtils.userDatabase.Read(newVal);
+        userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        //userList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() { 
+        //    public void changed(ObservableValue<? extends String> changed, String oldVal, String newVal) {
+                currentlySelectedUser = DatabaseUtils.userDatabase.Read((String) newValue);
                 refreshScreen();
-            }
+        //    }
         });
         userList.getSelectionModel().select(currentlySelectedUser.getUsername());
         refreshScreen();
