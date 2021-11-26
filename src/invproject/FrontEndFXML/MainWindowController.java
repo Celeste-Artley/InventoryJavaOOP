@@ -19,7 +19,9 @@ import javafx.stage.Stage;
 import invproject.Item;
 import java.util.List;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 
 /**
@@ -97,7 +100,7 @@ public class MainWindowController {
      * Disables ManageMenu option if not an Admin
      */
     public void initialize() {
-        loadItemsIntoMainWindow();
+        loadItemsIntoMainWindow(DatabaseUtils.itemDatabase.getObsItems());
         loadListOfCategories();
         
         // This will need to be edited once roles are added
@@ -146,7 +149,9 @@ public class MainWindowController {
     public void addCategory(ActionEvent event) throws IOException{
         
     }
-    
+    public void onCategorySelection(ActionEvent event)throws IOException{
+        
+    }
     /**
      * Returns to the login page as well as setting the active user to null
      * @param event
@@ -175,8 +180,7 @@ public class MainWindowController {
     /**
      * Displays the items at the start loading into the main window.
      */
-    private void loadItemsIntoMainWindow() {
-        ObservableList<Item> items = DatabaseUtils.itemDatabase.getObsItems();
+    private void loadItemsIntoMainWindow(ObservableList<Item> items) {
         ItemCol.setCellValueFactory(new PropertyValueFactory<Item,String>("name"));
         TagCol.setCellValueFactory(new PropertyValueFactory<Item,String>("stringOfTags"));
         CreatedCol.setCellValueFactory(new PropertyValueFactory<Item,String>("dateCreated"));
@@ -192,17 +196,46 @@ public class MainWindowController {
     
     /**
      * Loads all the categories from the database.
-     * @param event
-     * @throws IOException 
      */
     public void loadListOfCategories(){
         TreeItem treeRoot = new TreeItem("Categories");
-        
+        treeRoot.setExpanded(true);
         List<Category> categories = DatabaseUtils.categoryDatabase.getCategories();
+        System.out.println(categories);
         for(Category c : categories)
         {
-            treeRoot.getChildren().add(new TreeItem(c.getName()));
+            TreeItem i = new TreeItem(c.getName());
+            i.setExpanded(true);
+            treeRoot.getChildren().add(i);
+            
         }
+        EventHandler<MouseEvent> eventHandler = (MouseEvent t) -> {
+            TreeItem treeItem = (TreeItem)categoriesTree.getSelectionModel().getSelectedItem();
+            ObservableList<Item> items = DatabaseUtils.itemDatabase.getObsItems();
+            ObservableList<Item> listToShow = FXCollections.observableArrayList();
+            for(Item i : items)
+            {
+                System.out.println(i.getCategoryName());
+                System.out.println(treeItem.getValue());
+                if(i.getCategoryName().equals(treeItem.getValue()))
+                {
+                    listToShow.add(i);
+                }
+            }
+            if(treeItem.getValue().equals("Categories"))
+                {
+                    this.loadItemsIntoMainWindow(items);
+                }
+            else
+                {
+                    this.loadItemsIntoMainWindow(listToShow);
+                }
+            
+            System.out.println("You selected : " +  treeItem.getValue());
+            
+            //loadItemsIntoMainWindow(DatabaseUtils.itemDatabase.getObsItems());
+        };
+        categoriesTree.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
         categoriesTree.setRoot(treeRoot);
     }
 }

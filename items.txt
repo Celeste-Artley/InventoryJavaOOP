@@ -3,3 +3,8 @@ Shoes,Clothes,5,black shoes made for running.,running shoes,15,2021/11/22 00:45:
 Belt,Clothes,10,It keeps your pants up.,a cowboy belt,10,2021/08/22 00:38:50,2021/08/22 00:38:50,Black;Brown;Working;
 Hat,Clothes,12,a flat back cap.,a hat,8,2021/11/08 00:38:50,2021/11/08 00:38:50,Teen;Accessory;Summer;
 Jeens,Clothes,2,the hot new jeens people are wearing right now.,a pair of jeens,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;Blue;Summer;
+Pan,Kitchen,2,Used for frying up food,A pan,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;Black;
+Pot,Kitchen,2,Used for boiling food,A pot,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;Blue;Black;
+Stove,Kitchen,2,Used for making food,A stove,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;4 Cooktop;Hot;
+Fridge,Kitchen,2,Used for keeping food cold,A fridge,18,2021/11/21 00:38:50,2021/11/21 00:38:50,Size 16;Double Door;Cold;
+
