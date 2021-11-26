@@ -122,10 +122,20 @@ public class ManageUsersController {
      */
     public void updateUserRole(ActionEvent event) throws IOException{
         userRoleLabel.setText(newUserRole.getValue().toString());
+        if (newUserRole.getValue().toString().equals("Administrator")) {
+            invproject.User user;
+            user = new invproject.User(currentlySelectedUser.getUsername(), currentlySelectedUser.getPassword(), currentlySelectedUser.getEmail(), true);
+            DatabaseUtils.userDatabase.Update(currentlySelectedUser.getUsername(), user);
+            DatabaseUtils.userDatabase.Save();
+        } else if (currentlySelectedUser.getRole()) {
+            invproject.User user;
+            user = new invproject.User(currentlySelectedUser.getUsername(), currentlySelectedUser.getPassword(), currentlySelectedUser.getEmail(), false);
+            DatabaseUtils.userDatabase.Update(currentlySelectedUser.getUsername(), user);
+            DatabaseUtils.userDatabase.Save();
+        }
         newUserRole.valueProperty().set(null);
-        // Just updates role label, no connection to backend.
-        // No UpdateRole function available in UserDatabase yet.
-        // No proper Role attribute in User yet.
+        // Updates role only as Administrator or NON-Administrator.
+        // For all NON-Administrator roles, updates only role label.
     }
     
     /**
