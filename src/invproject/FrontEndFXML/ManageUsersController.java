@@ -69,11 +69,8 @@ public class ManageUsersController {
         Collections.sort(userObservableList);
         userList.getSelectionModel().setSelectionMode(SINGLE);
         userList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        //userList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() { 
-        //    public void changed(ObservableValue<? extends String> changed, String oldVal, String newVal) {
                 currentlySelectedUser = DatabaseUtils.userDatabase.Read((String) newValue);
                 refreshScreen();
-        //    }
         });
         userList.getSelectionModel().select(currentlySelectedUser.getUsername());
         refreshScreen();
@@ -125,6 +122,7 @@ public class ManageUsersController {
      */
     public void updateUserRole(ActionEvent event) throws IOException{
         userRoleLabel.setText(newUserRole.getValue().toString());
+        newUserRole.valueProperty().set(null);
         // Just updates role label, no connection to backend.
         // No UpdateRole function available in UserDatabase yet.
         // No proper Role attribute in User yet.
