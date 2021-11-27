@@ -27,7 +27,7 @@
       <TextField fx:id="sDescTextField" layoutX="102.0" layoutY="134.0" prefHeight="25.0" prefWidth="485.0" />
       <Text layoutX="13.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Long Description" textAlignment="CENTER" wrappingWidth="73.13671875" />
       <TextArea fx:id="lDescTextArea" layoutX="102.0" layoutY="172.0" prefHeight="89.0" prefWidth="485.0" />
-      <Button fx:id="createItemButton" layoutX="270.0" layoutY="277.0" mnemonicParsing="false" onAction="#onCreateItem" text="Creat Item" />
+      <Button fx:id="createItemButton" layoutX="265.0" layoutY="277.0" mnemonicParsing="false" onAction="#onCreateItem" text="Create Item" />
       <Button fx:id="cancelButton" layoutX="527.0" layoutY="277.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
    </children>
 </Pane>

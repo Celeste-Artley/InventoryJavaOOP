@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -112,7 +113,9 @@ public class CreateItemController {
         {
             if(s.contains(";") || s.contains(","))
             {
-                System.out.println("Your tags can't contain ; or , characters.");
+                Alert loginWrong = new Alert(Alert.AlertType.ERROR);
+                loginWrong.setHeaderText("Your tags need to be seperated by space and not contain ; or , characters.");
+                loginWrong.showAndWait();
             }
             else
             {
@@ -126,7 +129,9 @@ public class CreateItemController {
         POrder order = new POrder();
         if(Category == null || name.length() ==  0 || lDesc.length() == 0 || sDesc.length() == 0)
         {
-            System.out.println("you need to enter all boxes, put an error here.");
+            Alert loginWrong = new Alert(Alert.AlertType.ERROR);
+            loginWrong.setHeaderText("Please fill in all information.");
+            loginWrong.showAndWait();
         }
         else
         {
