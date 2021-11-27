@@ -125,7 +125,7 @@ public class CreateAccountController {
     private Boolean checkPassword()
     {
         //checking the user's created account for a proper Password. one that is longer than 9 chars and shorter than 60.
-        if(userPassword.getText().toCharArray().length >= 9 && userPassword.getText().toCharArray().length <= 60)
+        if(userPassword.getText().toCharArray().length > 9 && userPassword.getText().toCharArray().length <= 60)
         {
             return true;
         }
@@ -139,7 +139,7 @@ public class CreateAccountController {
         else
         {
             Alert loginWrong = new Alert(AlertType.ERROR);
-            loginWrong.setHeaderText("Your username needs to be longer than 9 characters.");
+            loginWrong.setHeaderText("Your password needs to be longer than 9 characters.");
             loginWrong.showAndWait();
             return false;
         }
