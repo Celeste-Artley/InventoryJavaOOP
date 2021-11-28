@@ -26,4 +26,11 @@ public class Category {
         this.name = name;
     }
     //End of Getters / Setters functions
+    @Override
+    public String toString()
+    {
+        String s;
+        s = name;
+        return s;
+    }
 }

@@ -75,4 +75,13 @@ public class User {
         this.admin = admin;
     }
     //End of Getters / Setters functions
+    
+     @Override
+     public String toString()
+   {
+       String s;
+       
+       s = username + "," + password + "," + email + "," + admin;
+       return s;
+   }
 }

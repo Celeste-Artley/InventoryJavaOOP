@@ -29,6 +29,7 @@ public class UserDatabase implements IDatabase<String, User> {
         {
            System.out.print(e);
         }
+        //testLoadSaveFunctonality();
     }
  
     public List<User> getUsers()
@@ -101,7 +102,7 @@ public class UserDatabase implements IDatabase<String, User> {
     {
         for (User u : users)
         {
-            if(u.getUsername() == s)
+            if(u.getUsername().equals(s))
             {
                u.setPassword(p);
             }
@@ -118,7 +119,7 @@ public class UserDatabase implements IDatabase<String, User> {
     {
         for (User u : users)
         {
-            if(u.getUsername() == s)
+            if(u.getUsername().equals(s))
             {
                u.setEmail(e);
             }
@@ -133,12 +134,19 @@ public class UserDatabase implements IDatabase<String, User> {
     @Override
     public void Delete(String s)
     {
+        User userToDelete = null;
+        Boolean isInDatabase = false;
         for (User u : users)
         {
-            if(u.getUsername() == s)
+            if(u.getUsername().equals(s))
             {
-               users.remove(u);
+              userToDelete = u;
+              isInDatabase = true;
             }
+        }
+        if(isInDatabase)
+        {
+            users.remove(userToDelete);
         }
     }
     
@@ -150,11 +158,9 @@ public class UserDatabase implements IDatabase<String, User> {
         //try's to write with all the user data
         try
         {
-            //Checks to see if the file exist
             File file = new File(saveLocation);
             if(!file.exists())
             {
-                //If the file does not exist trys to create a new one
                 try
                 {
                     file.createNewFile();
@@ -164,11 +170,10 @@ public class UserDatabase implements IDatabase<String, User> {
                     System.out.print(e);  
                 }
             }
-            //writes for each user saved data into users.txt
             FileWriter fwriter = new FileWriter(saveLocation);
             for(User u : users)
             {
-                fwriter.write(u.getUsername() + " " + u.getPassword() + " " + u.getEmail() + " " + u.getRole().toString() + "\n");
+                fwriter.write(u.toString() + "\n");
             }
             fwriter.close();
         }
@@ -176,8 +181,6 @@ public class UserDatabase implements IDatabase<String, User> {
         {
             System.out.print(e);
         }
-        
-        
     }
     
     /**
@@ -194,14 +197,25 @@ public class UserDatabase implements IDatabase<String, User> {
             try (Scanner scanner = new Scanner(file)) {
                 while(scanner.hasNext())
                 {
-                    String username = scanner.next();
-                    String password = scanner.next();
-                    String email = scanner.next();
-                    Boolean role = Boolean.parseBoolean(scanner.next());
+                    String read = scanner.nextLine();
+                    String[] userValues = read.split(",");
+                    
+                    String username = userValues[0];
+                    String password = userValues[1];
+                    String email = userValues[2];
+                    Boolean role = Boolean.parseBoolean(userValues[3]);
                     User u = new User(username, password, email, role);
                     returnUsers.add(u);
                 }}
         }
         return returnUsers;
-    }  
+    }
+    private void testLoadSaveFunctonality()      
+    {
+        System.out.println("Users Database before Users were added: " + users.size());
+        users.add(new User("admin","123","admin@admin.com", true));
+        users.add(new User("test","132","test@test.com", false));
+        Save();
+        System.out.println("Users Database after Users were added and saved: " + users.size());
+    }
 }

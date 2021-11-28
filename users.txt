@@ -1,2 +1,4 @@
-admin 123 admin@dev.com true
-test 123 test@dev.com false
+admin,123,admin@dev.com,true
+test,123,test@dev.com,false
+davinhoang1,Pokemon123,davin.hoang1@gmail.com,false
+davinhoang1,Pokemon123,davin.hoang1@gmail.com,false

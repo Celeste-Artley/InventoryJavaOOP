@@ -4,8 +4,15 @@
  */
 package invproject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * This is a Static variable database of all Item objects. 
@@ -17,7 +24,16 @@ public class ItemDatabase implements IDatabase<String, Item> {
     
     public ItemDatabase()
     {
-        items = Load();
+        try
+        {
+            items = Load();
+            //System.out.println(items.size());
+        }
+        catch(FileNotFoundException e)
+        {
+           System.out.print(e);
+        }
+        //testLoadSaveFunctonality();
     }
     
     public List<Item> getItems()
@@ -45,7 +61,7 @@ public class ItemDatabase implements IDatabase<String, Item> {
         Item val = null;
         for (Item i : items)
         {
-            if(i.getName() == s)
+            if(i.getName().equals(s))
             {
                 val = i;
             }
@@ -62,63 +78,16 @@ public class ItemDatabase implements IDatabase<String, Item> {
      */
     @Override
     public void Update(String itemName, Item value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    /**
-     * Updates a Category on the item by taking in a Item Name (itemName)
-     * a Category Name(s), and a Category ( c) Finds the item to replace the 
-     * Category with (itemName) then find the Item's Category with (s) and 
-     * replaces their Category with (c)
-     * @param itemName
-     * @param s
-     * @param c 
-     */
-    public void UpdateCategory(String itemName, String s)
-    {
-        for (Item i : items)
+        
+        Item replace = Read(itemName);
+        if(replace != null)
         {
-            if(i.getName() == null ? s == null : i.getName().equals(itemName))
-            {
-               Category newCat = new Category(s);
-               i.setCategory(newCat);
-            }
+            items.remove(replace);
+            items.add(value);
         }
-    }
-    
-    /**
-     * Updates a Long Description on the item by taking in a Item Name (itemName)
-     * a String Description(s), and a String (s) Finds the item to replace the 
-     * Long Description with (itemName) then replaces said string with String (s)
-     * @param itemName
-     * @param s
-     */
-    public void UpdateLongDesc(String itemName, String s)
-    {
-        for (Item i : items)
+        else
         {
-            if(i.getName().equals(itemName))
-            {
-               i.setlDescription(s);
-            }
-        }
-    }
-    
-    /**
-     * Updates a Short Description on the item by taking in a Item Name (itemName)
-     * a String Description(s), and a String (s) Finds the item to replace the 
-     * Short Description with (itemName) then replaces said string with String (s)
-     * @param itemName
-     * @param s
-     */
-    public void UpdateShortDesc(String itemName, String s)
-    {
-        for (Item i : items)
-        {
-            if(i.getName().equals(itemName))
-            {
-               i.setsDescription(s);
-            }
+            System.out.println("Could not find passed item by name.");
         }
     }
     
@@ -130,12 +99,19 @@ public class ItemDatabase implements IDatabase<String, Item> {
     @Override
     public void Delete(String s)
     {
+        Item itemToDelete = null;
+        boolean isInDatabase = false;
         for (Item i : items)
         {
-            if(i.getName() == s)
+            if(i.getName().equals(s))
             {
-               items.remove(i);
+               itemToDelete = i;
+               isInDatabase = true;
             }
+        }
+        if(isInDatabase)
+        {
+            items.remove(itemToDelete);
         }
     }
     
@@ -144,16 +120,96 @@ public class ItemDatabase implements IDatabase<String, Item> {
      */
     public void Save()
     {
-        
+        try
+        {
+            File file = new File(saveLocation);
+            if(!file.exists())
+            {
+                try
+                {
+                    file.createNewFile();
+                }
+                catch(IOException e)
+                {
+                    System.out.print(e);  
+                }
+            }
+            FileWriter fwriter = new FileWriter(saveLocation);
+            for(Item i : items)
+            {
+                fwriter.write(i.toString() + "\n");
+            }
+            fwriter.close();
+        }
+        catch(IOException e)
+        {
+            System.out.print(e);
+        }
     }
     
     /**
      * pulls the data from the saveLocation and puts it in the database
      * @return 
      */
-    private List<Item> Load()
+    private List<Item> Load() throws FileNotFoundException
     {
-        List<Item> items = new ArrayList<Item>();
-        return items;
+        List<Item> returnItems = new ArrayList<>();
+        File file = new File(saveLocation);
+        if(file.canRead())
+        {
+            try (Scanner scanner = new Scanner(file)) 
+            {
+                while(scanner.hasNext())
+                    {
+                        String read = scanner.nextLine();
+                        String[] itemValues = read.split(",");
+                        
+                        String itemName = itemValues[0];
+                        String itemCategory = itemValues[1];
+                        Integer itemQuantity = Integer.parseInt(itemValues[2]);
+                        String lDescription = itemValues[3];
+                        String sDescription = itemValues[4];
+                        
+                        Integer orderQuantity = Integer.parseInt(itemValues[5]);
+                        String dateCreated = itemValues[6];
+                        String lastEdited = itemValues[7];
+                        POrder order = new POrder(orderQuantity,dateCreated,lastEdited);
+                        
+                        List<Tag> tags = new ArrayList<>();
+                        String[] tagNames = itemValues[8].split(";");
+                        for(String s : tagNames)
+                        {
+                            tags.add(new Tag(s));
+                        }
+                        Item i = new Item(itemName,itemCategory,itemQuantity, lDescription, sDescription,order,tags);
+                        returnItems.add(i);
+                    }
+            }
+        }
+        return returnItems;
     }  
+
+    /**
+     * converts the ArrayList to an Observable List for use in FXML
+     * @return
+     */
+    public ObservableList<Item> getObsItems()
+    {
+        ObservableList<Item> itemsObsList;
+        itemsObsList = FXCollections.observableArrayList(items);
+        return itemsObsList;
+        
+    }
+    private void testLoadSaveFunctonality() {
+        System.out.println("Item Database before items were added: " + items.size());
+        POrder order = new POrder(5);
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag("Red"));
+        tags.add(new Tag("Blue"));
+        tags.add(new Tag("Summer"));
+        Item i = new Item("Shirt", "Clothes", 20, "a shirt that looks pretty", "a shirt", order,tags);
+        items.add(i);
+        Save();
+        System.out.println("Item Database after items were added and saved: " + items.size());
+    }
 }

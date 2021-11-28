@@ -27,6 +27,7 @@ public class CategoryDatabase implements IDatabase<String, Category> {
         {
            System.out.print(e);
         }
+        //testLoadSaveFunctonality();
     }
     
     public List<Category> getCategories()
@@ -93,9 +94,20 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     @Override
     public void Delete(String s)
     {
-        categories.stream().filter(c -> (c.getName().equals(s))).forEachOrdered(c -> {
-            categories.remove(c);
-        });
+        Category categoryToDelete = null;
+        boolean isInDatabase = false;
+        for (Category c : categories)
+        {
+            if(c.getName().equals(s))
+            {
+               categoryToDelete = c;
+               isInDatabase = true;
+            }
+        }
+        if(isInDatabase)
+        {
+            categories.remove(categoryToDelete);
+        }
     }
     
     /**
@@ -104,30 +116,30 @@ public class CategoryDatabase implements IDatabase<String, Category> {
     public void Save()
     {
       try
-      {
-          File file = new File(saveLocation);
-          if(!file.exists())
-          {
-              try
-              {
-                  file.createNewFile();
-              }
-              catch(IOException e)
-              {
-                  System.out.print(e);
-              }
-           }
-           FileWriter fwriter = new FileWriter(saveLocation);
-           for(Category c : categories)
-           {
-               fwriter.write(c.getName()+ "\n");
-           }
-           fwriter.close();
-      }
-      catch(IOException e)
-      {
-          System.out.print(e);
-      }
+        {
+            File file = new File(saveLocation);
+            if(!file.exists())
+            {
+                try
+                {
+                    file.createNewFile();
+                }
+                catch(IOException e)
+                {
+                    System.out.print(e);  
+                }
+            }
+            FileWriter fwriter = new FileWriter(saveLocation);
+            for(Category c : categories)
+            {
+                fwriter.write(c.toString() + "\n");
+            }
+            fwriter.close();
+        }
+        catch(IOException e)
+        {
+            System.out.print(e);
+        }
     }
     
     /**
@@ -137,19 +149,34 @@ public class CategoryDatabase implements IDatabase<String, Category> {
      */
     private List<Category> Load() throws FileNotFoundException
     {
-        List<Category> returnCategories = new ArrayList<Category>();
+        List<Category> returnCategories = new ArrayList<>();
         File file = new File(saveLocation);
         if(file.canRead())
         {
-           Scanner scanner = new Scanner(file);
-           while(scanner.hasNext())
-           {
-               String value = scanner.next();
-               Category c = new Category(value);
-               returnCategories.add(c);
-           }
-           scanner.close();
+            try (Scanner scanner = new Scanner(file)) 
+            {
+                while(scanner.hasNext())
+                    {
+                        String read = scanner.nextLine();
+                        String[] itemValues = read.split(",");
+                        
+                        String name = itemValues[0];
+
+                        Category c = new Category(name);
+                        returnCategories.add(c);
+                    }
+            }
         }
-        return categories;
+        return returnCategories;
+    }
+    
+    private void testLoadSaveFunctonality()      
+    {
+        System.out.println("Categories Database before Categories were added: " + categories.size());
+        categories.add(new Category("Red"));
+        categories.add(new Category("Blue"));
+        categories.add(new Category("Summer"));
+        Save();
+        System.out.println("Categories Database after Categories were added and saved: " + categories.size());
     }
 }
